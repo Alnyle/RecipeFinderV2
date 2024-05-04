@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'users/style/login.css' %}?{% now 'U' %}"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+
+    <div class="container">
+        <h3 class="login-title">Login</h3>
+        <form id="login" method="POST" action="{% url 'users:login_view' %}">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Enter your name here" id="username">
+                <small></small>
+            </div>
+
+            <div class="form-field">
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="Password" id="password">
+                <small></small>
+            </div>
+       
+
+            <div class="btns">
+                <input id="submit-btn" type="submit">
+                <p id="No-Account">No Account? <a href="{% url 'users:register' %}">Create One!</a></p> 
+            </div>
+            
+        </form>
+
+    </div>
+    <script src="{% static 'users/js/login.js' %}?{% now 'U' %}"></script>
+</body>
+</html>

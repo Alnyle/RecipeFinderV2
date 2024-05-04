@@ -1,0 +1,519 @@
+{% load static %}
+{% load bookmark_filter %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Django Project</title>
+    <link rel="stylesheet" href="{% static 'recipes/style/global.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'recipes/style/index.css' %}?{% now 'U' %}"/>
+
+    <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="left-side">
+
+
+        <nav class="hide-mobile">
+            <ul>
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'favorite' %}">Favorite</a></li>
+                {#                <li><a class="active"  href="{% url 'discover' %}">Discover</a></li>#}
+                <li class="select-container">
+                    <p class="select-paragraph">Meals</p>
+                    <div class="select-category">
+                        {% for category in Categories %}
+                            <a href="{% url 'get_category' category_id=category.id %}">
+                                {{ category.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li><a href="{% url 'AboutUs' %}">About Us</a></li>
+            </ul>
+        </nav>
+
+
+    </div>
+
+    <div class="logo">
+        <h1>
+            <a href="{% url 'index' %}">Foo<span>dies</span></a>
+        </h1>
+    </div>
+
+    <div class="right-side">
+
+
+        <form class="search-field">
+            <input type="search" class="input-field" placeholder="search"/>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                      stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.5 17.5L13.875 13.875" stroke="#64748B" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+        </form>
+
+        <a href="#" class="menu">
+            <svg
+                    viewBox="0 0 18 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M0 12.5H18V10.5H0V12.5ZM0 7.5H18V5.5H0V7.5ZM0 0.5V2.5H18V0.5H0Z"
+                        fill="black"
+                />
+            </svg>
+        </a>
+
+        <div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'users:profile' %}">
+                    <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">
+                </a>
+            {% else %}
+                <a class="signInBtn" href="{% url 'users:login_view' %}">login</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<aside>
+    <img
+            src="{% static 'assets/mobile-exit.svg' %}"
+            alt="Exit mobile nav"
+            class="exit hide-tablet"
+    />
+    <nav>
+        <ul>
+            <li class="active">
+                <a href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'favorite' %}">Favorite</a>
+            </li>
+            <li class="subCategories">
+                <div class="select-paragraph-m">
+                    <i class="fa-solid fa-arrow-up select-arrow"></i>
+                    <p class="">Categories</p>
+                </div>
+
+                <div class="select-category-m">
+                    {% for category in Categories %}
+                        <a href="{% url 'get_category' category_id=category.id %}">
+                            {{ category.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </li>
+            <li>
+                <a href="{% url 'users:profile' %}">Account</a>
+            </li>
+            <li>
+                <a href="{% url 'AboutUs' %}">About Us</a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<!-- Main -->
+
+<main>
+    <div class="wrapper-top">
+        <div class="top-level">
+
+            <div class="section-title">
+                <p>Foodies Recipes</p>
+            </div>
+
+            <div class="top">
+                <div class="hero-headers">
+                    <h1>Connect with fellow foodies dishes and get inspired.</h1>
+                    <p>
+                        Explore our extensive collection detailed instructions, connect with a vibrant community of food
+                        lovers,
+                        and personalize your culinary experience
+                    </p>
+                </div>
+
+                <div class="get-Start-Btn">
+                    <button class="btn">Start Now</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<div id="scroller">
+    <div id="scroller-in" class="scroller-in">
+        <div class="card">
+            <img src="{% static 'Assets/p1.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p2.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p3.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p4.jpg' %}" alt="person image 3">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p5.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p6.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="scroller-in" class="scroller-in-2 scroller-in">
+
+        <div class="card">
+            <img src="{% static 'Assets/p1.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p2.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p3.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p4.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p5.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{% static 'Assets/p6.jpg' %}" alt="person image">
+            <div class="card-content">
+                <div class="person">
+                    <p class="name">Jessa Showalter</p>
+                    <p class="job-title"></p>
+                </div>
+                <ul class="person-tags">
+                    <li>chief</li>
+                    <li>Programmer</li>
+                    <li>Player</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- categories section -->
+
+<div class="recipes">
+    <div class="recipes-wrapper">
+        <div class="recipes-head">
+            <h2 class="recs-title">Get a recipe to cook</h2>
+
+            <div class="links">
+                <p>Popular Recipes</p>
+                <button class="btn see-more">
+                    <a>See more</a>
+                    {#                    <i class="fa-solid fa-arrow-right"></i>#}
+                </button>
+            </div>
+        </div>
+        
+        <div class="rows-recipes">
+              <div class="carts-container">
+                {% for recipe in recipes %}
+                    {% if forloop.counter <= 4 %} {# Limiting to four iterations #}
+                        <div class="cart">
+                            <div class="cart-top">
+                                <img src="{% static 'Assets/hero.jpg' %}" alt="recipe image">
+                                 <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
+                                      action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
+                                    {% csrf_token %}
+                                    <div>
+                                        {% if request.user.is_authenticated %}
+    
+                                            {% if request.user|check_bookmark:recipe.id %}
+                                                <i class="fa-solid marked favorite-icon fa-heart"
+                                                   id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
+                                            {% else %}
+                                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                                   recipeID="{{ recipe.id }}"></i>
+                                            {% endif %}
+                                        {% else %}
+                                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                               recipeID="{{ recipe.id }}"></i>
+                                            <!-- Recipe is bookmarked by the current user -->
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="cart-bottom">
+                                <div class="rec-details">
+                                    <p class="rec-level ">{{ recipe.Level }}</p>
+                                    <h3 class="rec-name"><a style="color:black"
+                                                            href="{% url 'recipe_details' recipe.id %}">Spicy Thai Basil Chicken Stir-Fry</a>
+                                    </h3>
+                                </div>
+                                <div class="addition-details">
+                                    <p>{{ recipe.duration }} mins</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <h1>Empty</h1>
+                {% endfor %}
+            </div>              
+            <div class="carts-container">
+                {% for recipe in recipes %}
+                    {% if forloop.counter <= 4 %} {# Limiting to four iterations #}
+                        <div class="cart">
+                            <div class="cart-top">
+                                <img src="{% static 'Assets/hero.jpg' %}" alt="recipe image">
+                                 <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
+                                      action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
+                                    {% csrf_token %}
+                                    <div>
+                                        {% if request.user.is_authenticated %}
+    
+                                            {% if request.user|check_bookmark:recipe.id %}
+                                                <i class="fa-solid marked favorite-icon fa-heart"
+                                                   id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
+                                            {% else %}
+                                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                                   recipeID="{{ recipe.id }}"></i>
+                                            {% endif %}
+                                        {% else %}
+                                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                               recipeID="{{ recipe.id }}"></i>
+                                            <!-- Recipe is bookmarked by the current user -->
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="cart-bottom">
+                                <div class="rec-details">
+                                    <p class="rec-level ">{{ recipe.Level }}</p>
+                                    <h3 class="rec-name"><a style="color:black"
+                                                            href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
+                                    </h3>
+                                </div>
+                                <div class="addition-details">
+                                    <p>{{ recipe.duration }} mins</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <h1>Empty</h1>
+                {% endfor %}
+            </div>
+    
+        </div> 
+    
+    
+    </div>
+
+</div>
+
+<!-- Feature section -->
+
+<div class="feature">
+    <div class="feature-wrapper">
+        <img src="{% static 'Assets/f1.jpg' %}" alt="" class="feature-left">
+        <div class="feature-right">
+            <div class="info">
+                <h3 class="title">
+                    Real World Lessons for best experts with actionable skills
+                </h3>
+                <p class="details">
+                    Experience the cutting edge of educational technology with our innovative tools and technologies.
+                    From AI-powered assistants that guide you through
+                </p>                <p class="details">
+                    Experience the cutting edge of educational technology with our innovative tools and technologies.
+                    From AI-powered assistants that guide you through
+                </p>                <p class="details">
+                    Experience the cutting edge of educational technology with our innovative tools and technologies.
+                    From AI-powered assistants that guide you through
+                </p>
+            </div>
+            <div class="div">
+                <button class="btn-more">Read More</button>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer>
+    <div class="top">
+        <div class="col">
+            <div class="logo">
+                <h1>
+                    <a href="{% url 'index' %}">Foo<span>dies</span></a>
+                </h1>
+                <p>Best make you can recipy for your daily life for more </p>
+            </div>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">main course</a></li>
+                    <li><a href="#">dessert</a></li>
+                    <li><a href="#">appetizers</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">Best Meals</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Article</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact US</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="bottom">
+        <p>Copyright 2024 - Foodies</p>
+    </div>
+</footer>
+
+<script src="{% static 'recipes/js/global2.js' %}"></script>
+</body>
+</html>

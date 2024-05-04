@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+    height: 100%;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hide-mobile {
+    display: none;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #293845;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 12px 48px;
+}
+
+
+header div {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+header .left-side {
+    gap: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
+header  .logo  h1 {
+    font-size: 2.4rem;
+}
+
+header .logo  h1 a {
+    font-weight: 800;
+    font-family: 'Source Serif 4', serif;
+}
+
+header .logo  h1 a span {
+    color: #208C64;
+}
+
+
+
+header nav ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+header nav ul li {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+header nav ul li p {
+    font-size: 1.4rem;
+}
+
+
+header .right-side {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+header .search-field {
+    width: 40%;
+    position: relative;
+}
+
+
+header .right-side .input-field {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: none;
+    background-color: #F1F5F9;
+    border-radius: 20px;
+}
+
+header .search-field svg {
+    position: absolute;
+    left: 12px;
+    top: 9px;
+    width: 20px;
+    height: 20px;
+}
+
+
+header .right-side .menu svg {
+    width: 23px;
+    height: 13px;
+    color: #293845;
+}
+
+
+
+/* Side */
+
+    aside {
+        position: fixed;
+        z-index: 999;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        background-color: #208C64;
+        width: 50%;
+        padding: 3em;
+        text-align: right;
+        transition: transform 0.6s;
+        transform: translateX(100%);
+    }
+
+  aside img {
+    background: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 0.3em;
+    cursor: pointer;
+  }
+  aside ul {
+    width: 100%;
+    margin-top: 6em;
+  }
+  aside ul li {
+    width: 100%;
+    margin-bottom: 1.5em;
+  }
+  aside ul li a {
+    color: white;
+    font-size: 2rem;
+}
+
+.toggle-menu {
+    transform: translateX(0);
+}
+
+
+.marked {
+    color: red;
+}
+
+
+.top ul a {
+    font-size: 1.4rem;
+    color: white;
+}
+.top .logo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.top .logo h1 a {
+    color: white;
+}
+
+.top .logo p {
+    width: 80%;
+    font-size: 1.4rem;
+}
+
+
+
+.select-paragraph-m {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2rem;
+    color: white;
+    font-size: 2rem;
+}
+
+
+.subCategories {
+    width: 100%;
+}
+
+.select-category-m {
+    margin-top: 8px;
+    transition: all .4s ease-in-out;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 24px;
+    width: 100%;
+}
+
+.showCategory {
+    display: flex;
+}
+
+.select-category-m a {
+    font-size: 1.6rem;
+    /*text-align: left;*/
+    /*font-size: 2rem;*/
+    color: #ffffff;
+    text-decoration: none;
+    width: 100%;
+    padding: 1.2rem 0;
+    transition: all .4s ease-in-out;
+}
+
+.select-category-m a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/*header .hide-mobile ul li a.active {*/
+/*    font-weight: bold;*/
+/*    color: red;*/
+/*}*/
+
+
+
+header  nav.hide-mobile ul li a {
+    transition: all .4s ease;
+    color: black;
+}
+
+header  nav.hide-mobile ul li a:hover {
+    color: #0A7B52;
+    text-decoration: underline;
+}
+
+header nav.hide-mobile ul li.active {
+    font-weight: bold;
+    /*text-decoration: underline*/
+}
+
+.select-container {
+    position: relative;
+    transition: display .4s ease;
+    transition-duration: 2s;
+}
+
+
+.select-category {
+    /*margin-top: 8px;*/
+    /*transition: display .4s 1s;*/
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    position: absolute;
+    left: -10px;
+    top: 37px;
+    width: 200px;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
+    z-index: 999;
+}
+
+.select-category a {
+    /*text-align: left;*/
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    padding: 20px 10px;
+}
+
+
+
+
+
+header  nav.hide-mobile ul .select-category a:hover
+{
+    color: white;
+    text-decoration: none;
+    /*background-color: #d8d8d8;*/
+    background-color: #0A7B52;
+}
+
+
+.signInBtn {
+    padding: 8px 14px;
+    /*background-color: #0A7B52;*/
+    border: 1px solid #208C64;
+    color: #208C64;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    border-radius: 4px;
+    transition: all .4s ease-in-out;
+}
+
+.signInBtn:hover, .signInBtn:active {
+    background-color: #0A7B52;
+    color: white;
+}
+
+/*.select-container:hover .select-category  {*/
+/*    display: flex;*/
+/*}*/
+
+
+/* Footer */
+
+footer {
+    display: flex;
+    background-color: #191D23;
+    flex-direction: column;
+    color: white;
+    margin-top: auto;
+}
+
+footer .top {
+    width: 100%;
+    padding: 64px 48px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+
+footer .top ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+footer .bottom {
+    display: flex;
+    justify-content: center;
+    padding: 12px 16px;
+    background-color: #0D0F11;
+}
+
+
+
+
+@media only screen and (min-width: 680px) {
+
+    .header {
+        padding: 4px 32px;
+    }
+
+    .hide-mobile {
+        display: unset;
+    }
+
+    header .left-side {
+        gap: 20px;
+        width: 50%;
+    }
+
+    header .right-side {
+        gap: 20px;
+        width: 50%;
+        margin-left: 20px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    footer .top {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+

@@ -1,0 +1,36 @@
+
+
+
+
+.sub-header {
+    border-bottom: 1px solid #C3CFD9;
+}
+
+.sub-header .wrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    padding: 12px 48px;
+}
+
+.sub-header-nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.subheader-list {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    font-size: 1.4rem;
+}
+
+.subheader-list li {
+    transition: all .4s ease-in-out;
+}
+
+.subheader-list li:hover a {
+    color: #208C64;
+    text-decoration: underline;
+    font-weight: bold;
+}

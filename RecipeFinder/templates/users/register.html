@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{% static 'users/style/register.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+
+    <div class="container">
+        <h3 class="login-title">SignUp</h3>
+        <form id="signUp" method="POST" action="{% url 'users:register' %}">
+            {% csrf_token %}
+            <div class="form-field" id="email-filed">
+                <label for="Email">Email Address</label>
+                <input type="email" name="email" placeholder="Name@gamil.com" id="email">
+                <small></small>
+            </div>
+
+            <div id="name">
+                <div class="form-field">
+                    <label for="first-name">First Name</label>
+                    <input type="text" name="firstName" placeholder="First Name" id="first-name">
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" name="lastName" placeholder="Last Name" id="last-name">
+                    <small></small>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="password" id="password">
+                <small></small>
+            </div>
+
+            <div class="form-field">
+                <label for="password">Confirm Password</label>
+                <input type="password" placeholder="Password" id="confirm-password">
+                <small></small>
+            </div>
+            
+            <div class="admin_checkbox">
+                <input type="checkbox" name="isAdmin" id="isAdmin"  value="false">
+                <label for="checkbox"> sign up as admin</label>
+            </div>
+
+            <div class="btns">
+                <input id="submit-btn" type="submit">
+                <p id="No-Account">Already have Account? <a href="{% url 'users:login_view' %}">Sign In!</a></p>
+            </div>
+        </form>
+    <script src="{% static 'users/js/signUp.js' %}"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+
+
+.wrapper {
+    max-width: 1200px;
+    /* background-color: aqua; */
+    margin: 5em auto;
+    padding: 0 4rem;
+}
+
+.titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.6rem;
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    color: #208C64;
+}
+
+.content {
+    font-size: 1.6rem;
+}
+
+.aboutUs-Img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4rem;
+    border-radius: 5px;
+}
+
+
+.aboutUs-Img img {
+    width: 100%;
+    height: 350px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin-top: 2rem;
+    border-radius: 5px;
+}
+
+
+.About-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 4rem 0 8rem 0;
+}
+
+.story-title,
+.our-mission-title,
+.Our-Commitment-title {
+    font-size: 2.4rem;
+}
+
+/* Media Query */
+
+@media only screen and (min-width: 1260px) {
+
+    .wrapper {
+        padding: 0;
+    }
+}

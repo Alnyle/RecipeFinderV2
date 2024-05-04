@@ -1,0 +1,242 @@
+{% load static %}
+{% load bookmark_filter %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Django Project</title>
+    <link rel="stylesheet" href="{% static 'recipes/style/global.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'users/style/profile.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'users/style/addRecipe.css' %}?{% now 'U' %}">
+    <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  
+<!-- Header -->
+<header>
+    <div class="left-side">
+
+        <div class="logo">
+            <h1>
+                <a href="{% url 'index' %}">Foo<span>dies</span></a>
+            </h1>
+        </div>
+
+        <nav class="hide-mobile">
+            <ul>
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'favorite' %}">My Saved Recipes</a></li>
+                {#                <li><a class="active"  href="{% url 'discover' %}">Discover</a></li>#}
+                <li class="select-container">
+                    <p class="select-paragraph">Categories</p>
+                    <div class="select-category">
+                        {% for category in Categories %}
+                            <a href="{% url 'get_category' category_id=category.id %}">
+                                {{ category.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li><a href="{% url 'AboutUs' %}">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="right-side">
+        <div class="input-icons">
+            <input type="search" class="input-field" placeholder="search"/>
+            <button class="search-icon">
+                <img src="{% static 'assets/Icon.svg' %}" alt="Search Icon" class="search-icon"/>
+            </button>
+        </div>
+
+        <a href="#" class="menu">
+            <svg
+                    viewBox="0 0 18 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M0 12.5H18V10.5H0V12.5ZM0 7.5H18V5.5H0V7.5ZM0 0.5V2.5H18V0.5H0Z"
+                        fill="black"
+                />
+            </svg>
+        </a>
+        
+        <div>
+            {% if request.user.is_authenticated %}
+                <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">
+            {% else %}
+                <a class="signInBtn" href="{% url 'users:login_view' %}">login</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+<div class="sub-header">
+    <div class="wrapper">
+    <nav class="sub-header-nav">
+        <ul class="subheader-list">
+            <li><a href="{% url 'users:addRecipePage' %}" class="active">Add recipe</a></li>
+            <li><a href="#">Edit recipe</a></li>
+        </ul>
+    </nav>
+    </div>
+</div>
+
+<aside>
+    <img src="{% static 'assets/mobile-exit.svg' %}" alt="Exit mobile nav" class="exit hide-tablet"/>
+    <nav>
+        <ul>
+            <li class="active">
+                <a href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'favorite' %}">My Saved Recipes</a>
+            </li>
+            <li class="subCategories">
+                <div class="select-paragraph-m">
+                    <i class="fa-solid fa-arrow-up select-arrow"></i>
+                    <p class="">Categories</p>
+                </div>
+
+                <div class="select-category-m">
+                    {% for category in Categories %}
+                        <a href="{% url 'get_category' category_id=category.id %}">
+                            {{ category.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </li>
+            <li>
+                <a href="{% url 'users:profile' %}">Account</a>
+            </li>
+            <li>
+                <a href="{% url 'AboutUs' %}">About Us</a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<!-- Main -->
+
+
+
+        <div class="form-wrapper">
+              <form method="POST" action="{% url 'addRecipe' %}">
+                {% csrf_token %}
+                <div class="recipe_info">
+                    
+                 <div class="row-1">
+                       <div class="field-form">
+                          <label for="recipe_name">Recipe Name</label>
+                          <input type="text" name="recipe_name" id="recipe_name">
+                          <small></small>
+                        </div>
+                      </div>
+                 </div>
+    
+                  <div class="row-2">
+                        <div class="col-1">
+                          <label for="course_name">Course Name</label>
+                          <select name="course_name" id="course_name">
+                              <option value="dessert">appetizers</option>
+                              <option value="dessert">dessert</option>
+                              <option value="dessert">main course</option>
+                          </select>
+                        </div>
+                        <div class="col-2">
+                             <label for=" MealImage"> Meal Image</label>
+                             <input type="file" name="recipe_image">
+                        </div>
+                </div>
+        
+                <div class="ingredients">
+    
+                  <h3>ingredients</h3>
+                    <div class="ingredient">
+                      <div class="form-field ingred">
+                          <label for="Ingredient_name">Ingredient Name</label>
+                          <input type="text" class="ingredient_name">
+                          <small></small>
+                      </div>
+    
+                      <div class="form-field ingred">
+                        <label for="Ingredient_quantity">Ingredient Quantity</label>
+                        <input type="number" class="ingredient_quantity">
+                        <small></small>
+                      </div>  
+                        
+                        <div class="form-field ingred">
+                        <label for="Ingredient_desc">Ingredient description (optional)</label>
+                        <textarea name="ingredient_description" class="ingredient_desc"
+                                  placeholder="Describe your recipe here" rows="15" cols="50"></textarea>
+                        <small></small>
+                      </div>
+                        
+                        <hr>
+                    </div>
+                    
+                  </div>
+                  <button id="add_Ingredient">Add Ingredient</button>
+        
+                <div class="recipe_desc">
+                    <label for="recipe_description">Recipe Description</label>
+                    <textarea name="recipe_description" id="recipe_description" placeholder="Describe your recipe here"></textarea>
+                </div>
+                
+                <input type="submit">
+            </form>
+
+        </div>
+    
+
+<!-- Footer -->
+<footer>
+    <div class="top">
+        <div class="col">
+            <div class="logo">
+                <h1>
+                    <a href="{% url 'index' %}">Foo<span>dies</span></a>
+                </h1>
+                <p>Best make you can recipy for your daily life for more </p>
+            </div>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">main course</a></li>
+                    <li><a href="#">dessert</a></li>
+                    <li><a href="#">appetizers</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">Best Meals</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Article</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact US</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="bottom">
+        <p>Copyright 2024 - Foodies</p>
+    </div>
+</footer>
+
+<script src="{% static 'recipes/js/global.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'users/js/addRecipe.js' %}?{% now 'U' %}"></script>
+</body>
+</html>

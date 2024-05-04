@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Django Project</title>
+    <link rel="stylesheet" href="{% static 'recipes/style/global.css' %}">
+    <link rel="stylesheet" href="{% static 'recipes/style/index.css' %}" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="left-side">
+        <div class="logo">
+          <h1>
+            <a href="{% url 'index' %}">Foo<span>dies</span></a>
+          </h1>
+        </div>
+
+        <nav class="hide-mobile">
+          <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'favorite' %}">My Saved Recipes</a></li>
+            <li><a href="{% url 'discover' %}">Discover</a></li>
+            <li><a href="{% url 'AboutUs' %}">Articles</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="right-side">
+        <div class="input-icons">
+          <input type="search" class="input-field" placeholder="search" />
+          <button class="search-icon">
+            <img src="{% static 'assets/Icon.svg' %}" alt="Search Icon" class="search-icon" />
+          </button>
+        </div>
+
+        <a href="#" class="menu">
+          <svg
+            viewBox="0 0 18 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 12.5H18V10.5H0V12.5ZM0 7.5H18V5.5H0V7.5ZM0 0.5V2.5H18V0.5H0Z"
+              fill="black"
+            />
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <aside>
+      <img
+        src="{% static 'assets/mobile-exit.svg' %}"
+        alt="Exit mobile nav"
+        class="exit hide-tablet"
+      />
+      <nav>
+        <ul>
+          <li class="active">
+            <a href="{% url 'index' %}">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'favorite' %}">My Saved Recipes</a>
+          </li>
+          <li>
+            <a href="{% url 'discover' %}">Discover</a>
+          </li>
+          <li>
+            <a href="{% url 'users:profile' %}">Account</a>
+          </li>
+            <li>
+                <a href="{% url 'articles' %}">Articles</a>
+            </li>
+        </ul>
+      </nav>
+    </aside>
+    
+    <!-- Main section -->
+  
+
+    {% block body %}
+        
+        
+    {% endblock %}
+    
+    <!-- Footer -->
+    <footer>
+      <div class="top">
+        <div class="col">
+          <div class="logo">
+            <h1>
+              <a href="{% url 'index' %}">Foo<span>dies</span></a>
+            </h1>
+            <p>Best make you can recipy for your daily life for more </p>
+          </div>
+        </div>
+        <div class="col">
+          <nav>
+            <ul>
+              <li><a href="#">main course</a></li>
+              <li><a href="#">dessert</a></li>
+              <li><a href="#">appetizers</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col">
+          <nav>
+            <ul>
+              <li><a href="#">Best Meals</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Article</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col">
+          <nav>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact US</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="bottom">
+        <p>Copyright 2024 - Foodies</p>
+      </div>
+    </footer>
+</body>
+</html>
+
