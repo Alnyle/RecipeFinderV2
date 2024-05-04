@@ -442,34 +442,173 @@
 
 </div>
 
+
 <!-- Feature section -->
 
 <div class="feature">
     <div class="feature-wrapper">
-        <img src="{% static 'Assets/f1.jpg' %}" alt="" class="feature-left">
-        <div class="feature-right">
+        <div class="feature-left">
             <div class="info">
                 <h3 class="title">
-                    Real World Lessons for best experts with actionable skills
+                    Unlock Culinary Creativity and Dive into a World of Flavor with foodie
                 </h3>
                 <p class="details">
-                    Experience the cutting edge of educational technology with our innovative tools and technologies.
-                    From AI-powered assistants that guide you through
-                </p>                <p class="details">
-                    Experience the cutting edge of educational technology with our innovative tools and technologies.
-                    From AI-powered assistants that guide you through
-                </p>                <p class="details">
-                    Experience the cutting edge of educational technology with our innovative tools and technologies.
-                    From AI-powered assistants that guide you through
+                    Whether you're in search of a comforting comfort food classic,
+                    a nutritious option for a health-conscious lifestyle, or a culinary
+                    adventure that pushes the boundaries of taste, we've got you covered.
+
                 </p>
             </div>
             <div class="div">
                 <button class="btn-more">Read More</button>
             </div>
-        </div>        
+        </div>    
+        <div class="feature-right">
+            <img src="{% static 'Assets/f1.jpg' %}" alt="" >
+        </div>
     </div>
+
 </div>
 
+<!-- recipe card -2 -->
+
+<div class="recipes">
+    <div class="recipes-wrapper">
+        <div class="recipes-head">
+
+            <div class="links">
+                <p>Popular Recipes</p>
+                <button class="btn see-more">
+                    <a>See more</a>
+                    {#                    <i class="fa-solid fa-arrow-right"></i>#}
+                </button>
+            </div>
+        </div>
+
+        <div class="rows-recipes">
+              <div class="carts-container">
+                {% for recipe in recipes %}
+                    {% if forloop.counter <= 4 %} {# Limiting to four iterations #}
+                        <div class="cart">
+                            <div class="cart-top">
+                                <img src="{% static 'Assets/hero.jpg' %}" alt="recipe image">
+                                 <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
+                                      action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
+                                    {% csrf_token %}
+                                    <div>
+                                        {% if request.user.is_authenticated %}
+
+                                            {% if request.user|check_bookmark:recipe.id %}
+                                                <i class="fa-solid marked favorite-icon fa-heart"
+                                                   id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
+                                            {% else %}
+                                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                                   recipeID="{{ recipe.id }}"></i>
+                                            {% endif %}
+                                        {% else %}
+                                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                               recipeID="{{ recipe.id }}"></i>
+                                            <!-- Recipe is bookmarked by the current user -->
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="cart-bottom">
+                                <div class="rec-details">
+                                    <p class="rec-level ">{{ recipe.Level }}</p>
+                                    <h3 class="rec-name"><a style="color:black"
+                                                            href="{% url 'recipe_details' recipe.id %}">Spicy Thai Basil Chicken Stir-Fry</a>
+                                    </h3>
+                                </div>
+                                <div class="addition-details">
+                                    <p>{{ recipe.duration }} mins</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <h1>Empty</h1>
+                {% endfor %}
+            </div>
+{#            <div class="carts-container">#}
+{#                {% for recipe in recipes %}#}
+{#                    {% if forloop.counter <= 4 %} {# Limiting to four iterations #}
+{#                        <div class="cart">#}
+{#                            <div class="cart-top">#}
+{#                                <img src="{% static 'Assets/hero.jpg' %}" alt="recipe image">#}
+{#                                 <form method="POST" id="form-{{ recipe.id }}" class="like-icon"#}
+{#                                      action="{% url 'add_to_favorites' recipe_id=recipe.id %}">#}
+{#                                    {% csrf_token %}#}
+{#                                    <div>#}
+{#                                        {% if request.user.is_authenticated %}#}
+{##}
+{#                                            {% if request.user|check_bookmark:recipe.id %}#}
+{#                                                <i class="fa-solid marked favorite-icon fa-heart"#}
+{#                                                   id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>#}
+{#                                            {% else %}#}
+{#                                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"#}
+{#                                                   recipeID="{{ recipe.id }}"></i>#}
+{#                                            {% endif %}#}
+{#                                        {% else %}#}
+{#                                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"#}
+{#                                               recipeID="{{ recipe.id }}"></i>#}
+{#                                            <!-- Recipe is bookmarked by the current user -->#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                            <div class="cart-bottom">#}
+{#                                <div class="rec-details">#}
+{#                                    <p class="rec-level ">{{ recipe.Level }}</p>#}
+{#                                    <h3 class="rec-name"><a style="color:black"#}
+{#                                                            href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>#}
+{#                                    </h3>#}
+{#                                </div>#}
+{#                                <div class="addition-details">#}
+{#                                    <p>{{ recipe.duration }} mins</p>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                {% empty %}#}
+{#                    <h1>Empty</h1>#}
+{#                {% endfor %}#}
+{#            </div>#}
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- Feature section -->
+
+<div class="feature">
+    <div class="feature-wrapper">
+        <div class="feature-right">
+            <img src="{% static 'Assets/f1.jpg' %}" alt="" >
+        </div>
+        <div class="feature-left">
+            <div class="info">
+                <h3 class="title">
+                    Unlock Culinary Creativity and Dive into a World of Flavor with foodie
+                </h3>
+                <p class="details">
+                    Whether you're in search of a comforting comfort food classic,
+                    a nutritious option for a health-conscious lifestyle, or a culinary
+                    adventure that pushes the boundaries of taste, we've got you covered.
+
+                </p>
+            </div>
+            <div class="div">
+                <button class="btn-more">Read More</button>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <!-- Footer -->
 <footer>

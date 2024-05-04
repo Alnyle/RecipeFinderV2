@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="21b314b6-94e9-4e3f-a16b-3bee92e9d947" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2ejGXWwQ9CN0IqnaErmLEnzfSfp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.RecipeFinder.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "E:/Project/RecipeFinder/recipes/static/Assets",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Project\RecipeFinder\recipes\static\Assets" />
+      <recent name="E:\Project\RecipeFinder\templates\static" />
+      <recent name="E:\Project\RecipeFinder\RecipeFinder\Assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Project\RecipeFinder\templates\users" />
+      <recent name="E:\Project\RecipeFinder\recipes\static\users\style" />
+      <recent name="E:\Project\RecipeFinder\recipes\static" />
+      <recent name="E:\Project\RecipeFinder\recipes\static\recipes\style" />
+      <recent name="E:\Project\RecipeFinder\recipes\static\recipes" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="RecipeFinder" type="Python.DjangoServer" factoryName="Django server">
+      <module name="RecipeFinder" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="RecipeFinder.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11 (RecipeFinder)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="21b314b6-94e9-4e3f-a16b-3bee92e9d947" name="Changes" comment="" />
+      <created>1712410613481</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712410613481</updated>
+      <workItem from="1712410664470" duration="9537000" />
+      <workItem from="1712519280376" duration="16216000" />
+      <workItem from="1712587870113" duration="20169000" />
+      <workItem from="1712661919268" duration="14148000" />
+      <workItem from="1712731310951" duration="2227000" />
+      <workItem from="1712836212872" duration="31553000" />
+      <workItem from="1713026577454" duration="19129000" />
+      <workItem from="1713083680533" duration="11749000" />
+      <workItem from="1713096690755" duration="7441000" />
+      <workItem from="1713209644830" duration="5755000" />
+      <workItem from="1713215573083" duration="1710000" />
+      <workItem from="1713295207038" duration="3546000" />
+      <workItem from="1713299077470" duration="2694000" />
+      <workItem from="1713335477737" duration="17479000" />
+      <workItem from="1713378732708" duration="16084000" />
+      <workItem from="1713450342475" duration="4463000" />
+      <workItem from="1713461300860" duration="3473000" />
+      <workItem from="1713548450152" duration="612000" />
+      <workItem from="1714321884059" duration="585000" />
+      <workItem from="1714322535623" duration="13830000" />
+      <workItem from="1714381026776" duration="14165000" />
+      <workItem from="1714426011923" duration="232000" />
+      <workItem from="1714576697483" duration="16396000" />
+      <workItem from="1714675082265" duration="19799000" />
+      <workItem from="1714750450824" duration="25359000" />
+      <workItem from="1714830642117" duration="19174000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
