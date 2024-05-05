@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
 
 
 
@@ -12,14 +12,13 @@
 html {
     font-size: 62.5%;
     height: 100%;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-
-    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .hide-mobile {
@@ -41,8 +40,6 @@ header {
     justify-content: space-between;
     flex-direction: row;
     padding: 12px 48px;
-    border-bottom: 1px solid #C3CFD9;
-
 }
 
 
@@ -55,20 +52,27 @@ header div {
 
 header .left-side {
     gap: 20px;
-    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
 }
 
 
+header  .logo {
+    width: 40%;
+}
 
-header .left-side .logo  h1 {
+header  .logo  h1 {
     font-size: 2.4rem;
 }
 
-header .left-side .logo  h1 a {
+header .logo  h1 a {
     font-weight: 800;
+    font-family: 'Source Serif 4', serif;
 }
 
-header .left-side .logo  h1 a span {
+header .logo  h1 a span {
     color: #208C64;
 }
 
@@ -84,42 +88,42 @@ header nav ul li {
     font-size: 1.4rem;
     font-weight: 500;
 }
-
+header nav ul li p {
+    font-size: 1.4rem;
+}
 
 
 header .right-side {
-    width: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
+    width: 60%;
 }
 
-header .input-icons {
-    width: 100%;
-    /* padding: 10px; */
-    flex-grow: 1;
+header .search-field {
+    /*width: 50%;*/
+    position: relative;
 }
+
 
 header .right-side .input-field {
     width: 100%;
-    padding: 10px;
-    /* text-align: center;  */
+    padding: 12px 12px 12px 40px;
     border: none;
     background-color: #F1F5F9;
-    border-radius: 2px 0 0 2px;
+    border-radius: 20px;
 }
 
-header .right-side .search-icon {
-    border: none;
-    background-color: #C3CFD9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    border-radius: 0 2px 2px 0;
+header .search-field svg {
+    position: absolute;
+    left: 12px;
+    top: 9px;
+    width: 20px;
+    height: 20px;
 }
+
 
 header .right-side .menu svg {
     width: 23px;
@@ -131,19 +135,19 @@ header .right-side .menu svg {
 
 /* Side */
 
-aside {
-    position: fixed;
-    z-index: 999;
-    right: 0;
-    top: 0;
-    height: 100vh;
-    background-color: #208C64;
-    width: 50%;
-    padding: 3em;
-    text-align: right;
-    transition: transform 0.6s;
-    transform: translateX(100%);
-  }
+    aside {
+        position: fixed;
+        z-index: 999;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        background-color: #208C64;
+        width: 50%;
+        padding: 3em;
+        text-align: right;
+        transition: transform 0.6s;
+        transform: translateX(100%);
+    }
 
   aside img {
     background: white;
@@ -284,7 +288,7 @@ header nav.hide-mobile ul li.active {
     top: 37px;
     width: 200px;
     background-color: white;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
     z-index: 999;
 }
 
@@ -309,22 +313,35 @@ header  nav.hide-mobile ul .select-category a:hover
 }
 
 
-.signInBtn {
-    padding: 8px 14px;
-    /*background-color: #0A7B52;*/
-    border: 1px solid #208C64;
-    color: #208C64;
+.verification-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 1.6rem;
+}
+
+.signInBtn, .loginInBtn  {
     font-size: 1.4rem;
+    font-weight: 600;
     text-transform: capitalize;
-    border-radius: 4px;
+}
+
+.loginInBtn  {
+    color: #0D0F11;
+}
+
+.signInBtn {
+    padding: 14px 18px;
+    color: #ffffff;
+    background-color: #191D23;
+    border-radius: 24px;
     transition: all .4s ease-in-out;
 }
 
-.signInBtn:hover, .signInBtn:active {
-    background-color: #0A7B52;
-    color: white;
-}
 
+.signInBtn:hover,
+.signInBtn:active {
+    background-color: #303741;
+}
 
 
 /*.select-container:hover .select-category  {*/
@@ -380,6 +397,10 @@ footer .bottom {
     header .left-side {
         gap: 20px;
         width: 50%;
+    }
+
+    header  .logo {
+        width: unset;
     }
 
     header .right-side {

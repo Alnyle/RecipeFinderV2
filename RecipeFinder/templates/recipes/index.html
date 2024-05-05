@@ -8,7 +8,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Django Project</title>
-    <link rel="stylesheet" href="{% static 'recipes/style/global.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'recipes/style/index.css' %}?{% now 'U' %}"/>
 
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
@@ -17,7 +17,7 @@
 
 <!-- Header -->
 <header>
-    <div class="left-side">
+    <div class="left-side hide-mobile">
 
 
         <nav class="hide-mobile">
@@ -76,9 +76,14 @@
 
         <div>
             {% if request.user.is_authenticated %}
-                <a href="{% url 'users:profile' %}">
-                    <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">
-                </a>
+{#                <a href="{% url 'users:profile' %}">#}
+{#                    <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">#}
+{#                    #}
+{#                </a>#}
+                <div class="verification-btn">
+                    <a class="loginInBtn" href="{% url 'users:login_view' %}">login</a>
+                    <a class="signInBtn" href="{% url 'users:register' %}">Sign Up</a>
+                </div>
             {% else %}
                 <a class="signInBtn" href="{% url 'users:login_view' %}">login</a>
             {% endif %}
