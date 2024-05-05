@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b314b6-94e9-4e3f-a16b-3bee92e9d947" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/recipes/static/recipes/style/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/global2.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/global2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/favorite.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/favorite.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/users/style/addRecipe.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/users/style/addRecipe.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/aboutUs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/aboutUs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/favorite.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/favorite.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/recipes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recipes/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/addRecipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/addRecipe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +155,7 @@
       <workItem from="1714750450824" duration="25359000" />
       <workItem from="1714830642117" duration="19256000" />
       <workItem from="1714912800640" duration="2293000" />
-      <workItem from="1714915292631" duration="2072000" />
+      <workItem from="1714915292631" duration="12075000" />
     </task>
     <servers />
   </component>

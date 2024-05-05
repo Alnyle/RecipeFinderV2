@@ -76,16 +76,15 @@
 
         <div>
             {% if request.user.is_authenticated %}
-{#                <a href="{% url 'users:profile' %}">#}
-{#                    <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">#}
-{#                    #}
-{#                </a>#}
-                <div class="verification-btn">
+                <a href="{% url 'users:profile' %}">
+                    <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">
+
+                </a>
+            {% else %}
+                <div class="hide-mobile verification-btn ">
                     <a class="loginInBtn" href="{% url 'users:login_view' %}">login</a>
                     <a class="signInBtn" href="{% url 'users:register' %}">Sign Up</a>
                 </div>
-            {% else %}
-                <a class="signInBtn" href="{% url 'users:login_view' %}">login</a>
             {% endif %}
         </div>
     </div>

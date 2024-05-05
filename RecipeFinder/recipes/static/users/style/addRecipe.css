@@ -72,15 +72,30 @@ form div {
     flex-direction: row;
 }
 
-#add_Ingredient {
-    border: none;
-    padding: 12px 8px;
-    background-color: #208C64;
-    color: white;
+
+.del-add-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+
+.del-add-btn button {
+    padding: 12px 14px;
+    /*background-color: #208C64;*/
+    border: 2px solid #208C64;
+    background-color: white;
+    color: black;
+    font-size: 1.6rem;
     font-weight: 500;
     border-radius: 4px;
-    width: 100%;
-    margin-bottom: 2rem;
+
+}
+
+.del-add-btn button:hover {
+    background-color: #208C64;
+    color: white;
 }
 
 .recipe_desc {
@@ -94,11 +109,10 @@ form div {
     min-height: 400px;
 }
 
-
-
 input[type=submit] {
     border: none;
     padding: 12px 8px;
+    font-size: 2rem;
     background-color: #208C64;
     color: white;
     font-weight: 500;

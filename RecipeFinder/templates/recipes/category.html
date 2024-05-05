@@ -8,8 +8,8 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Category-name</title>
-    <link rel="stylesheet" href="{% static 'recipes/style/global.css' %}?{% now 'U' %}">
+    <title>Django Project</title>
+    <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %} ">
     <link rel="stylesheet" href="{% static 'recipes/style/favorite.css' %}?{% now "U" %}"/>
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
 </head>
@@ -17,21 +17,16 @@
 
 <!-- Header -->
 <header>
-    <div class="left-side">
+    <div class="left-side hide-mobile">
 
-        <div class="logo">
-            <h1>
-                <a href="{% url 'index' %}">Foo<span>dies</span></a>
-            </h1>
-        </div>
 
         <nav class="hide-mobile">
             <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'favorite' %}">My Saved Recipes</a></li>
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'favorite' %}">Favorite</a></li>
                 {#                <li><a class="active"  href="{% url 'discover' %}">Discover</a></li>#}
                 <li class="select-container">
-                    <p class="select-paragraph">Categories</p>
+                    <p class="select-paragraph">Meals</p>
                     <div class="select-category">
                         {% for category in Categories %}
                             <a href="{% url 'get_category' category_id=category.id %}">
@@ -43,15 +38,28 @@
                 <li><a href="{% url 'AboutUs' %}">About Us</a></li>
             </ul>
         </nav>
+
+
+    </div>
+
+    <div class="logo">
+        <h1>
+            <a href="{% url 'index' %}">Foo<span>dies</span></a>
+        </h1>
     </div>
 
     <div class="right-side">
-        <div class="input-icons">
+
+
+        <form class="search-field">
             <input type="search" class="input-field" placeholder="search"/>
-            <button class="search-icon">
-                <img src="{% static 'assets/Icon.svg' %}" alt="Search Icon" class="search-icon"/>
-            </button>
-        </div>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                      stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.5 17.5L13.875 13.875" stroke="#64748B" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+        </form>
 
         <a href="#" class="menu">
             <svg
@@ -65,6 +73,20 @@
                 />
             </svg>
         </a>
+
+        <div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'users:profile' %}">
+                    <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">
+
+                </a>
+            {% else %}
+                <div class="hide-mobile verification-btn ">
+                    <a class="loginInBtn" href="{% url 'users:login_view' %}">login</a>
+                    <a class="signInBtn" href="{% url 'users:register' %}">Sign Up</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 </header>
 
@@ -76,10 +98,10 @@
     />
     <nav>
         <ul>
-            <li class="active">
+            <li>
                 <a href="{% url 'index' %}">Home</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{% url 'favorite' %}">My Saved Recipes</a>
             </li>
             <li class="subCategories">
@@ -87,12 +109,12 @@
                     <i class="fa-solid fa-arrow-up select-arrow"></i>
                     <p class="">Categories</p>
                 </div>
-     
+
                 <div class="select-category-m">
                     {% for category in Categories %}
                         <a href="{% url 'get_category' category_id=category.id %}">
-                          {{ category.name }}
-                       </a>
+                            {{ category.name }}
+                        </a>
                     {% endfor %}
                 </div>
             </li>
@@ -100,79 +122,78 @@
                 <a href="{% url 'users:profile' %}">Account</a>
             </li>
             <li>
-                <a href="{% url 'AboutUs' %}">Articles</a>
+                <a href="{% url 'AboutUs' %}">About Us</a>
             </li>
         </ul>
     </nav>
 </aside>
 
-<!-- Main -->
-
 
 {# Recipe #}
 
 <div class="my-recipes">
-
-    <div class="recipes-head">
-
-        <div class="links">
-            <p>Saved Recipes</p>
+    <div class="my-recipes-wrapper">
+        <div class="recipes-head">
+    
+            <div class="links">
+                <p>Category</p>
+            </div>
         </div>
-    </div>
-
-
-    <div class="carts-container">
-        <div class="rows">
-            {% for recipe in recipes %}
-                {% if request.user|check_bookmark:recipe.id %}
-                    <div class="cart">
-                        <div class="cart-top">
-                            <img src="{% static 'Assets/hero.jpg' %}" alt="recipe image">
-                        </div>
-                        <div class="cart-bottom">
-                            <div class="rec-details">
-                                <p class="rec-level">{{ recipe.Level }}</p>
-                                <h3 class="rec-name"><a style="color:black"
-                                                        href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
-                                </h3>
-                            </div>
-                            <div class="addition-details">
-                                <p>{{ recipe.duration }} mins</p>
-                                <form method="POST" id="form-{{ recipe.id }}"
+    
+    
+        <div class="carts-container">
+            <div class="rows">
+                {% for recipe in recipes %}
+                    {% if request.user|check_bookmark:recipe.id %}
+                        <div class="cart">
+                            <div class="cart-top">
+                                <img src="{% static 'Assets/hero.jpg' %}" alt="recipe image">
+                                 <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
                                       action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
                                     {% csrf_token %}
                                     <div>
                                         {% if request.user.is_authenticated %}
 
                                             {% if request.user|check_bookmark:recipe.id %}
-                                                <i class="fa-solid marked favorite-icon fa-bookmark"
+                                                <i class="fa-solid marked favorite-icon fa-heart"
                                                    id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
                                             {% else %}
-                                                <i class="fa-regular favorite-icon fa-bookmark"
-                                                   id="icon-{{ recipe.id }}"
+                                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
                                                    recipeID="{{ recipe.id }}"></i>
                                             {% endif %}
                                         {% else %}
-                                            <i class="fa-regular favorite-icon fa-bookmark" id="icon-{{ recipe.id }}"
+                                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
                                                recipeID="{{ recipe.id }}"></i>
                                             <!-- Recipe is bookmarked by the current user -->
                                         {% endif %}
                                     </div>
                                 </form>
                             </div>
+                            <div class="cart-bottom">
+                                <div class="rec-details">
+                                    <p class="rec-level ">{{ recipe.Level }}</p>
+                                    <h3 class="rec-name"><a style="color:black"
+                                                            href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
+                                    </h3>
+                                </div>
+                                <div class="addition-details">
+                                    <p>{{ recipe.duration }} mins</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                {% endif %}
-                {#                {% if forloop.counter|divisibleby:4 and not forloop.last %}#}
-                {#                    </div><div class="row">#}
-                {#                {% endif %}#}
-            {% empty %}
-                <h1>Empty</h1>
-            {% endfor %}
+                    {% endif %}
+                    {#                {% if forloop.counter|divisibleby:4 and not forloop.last %}#}
+                    {#                    </div><div class="row">#}
+                    {#                {% endif %}#}
+                {% empty %}
+                    <h1>Empty</h1>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
 </div>
+
 
 <!-- Footer -->
 <footer>
@@ -217,7 +238,6 @@
     </div>
 </footer>
 
-<script src="{% static 'recipes/js/global.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'recipes/js/favorite.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'recipes/js/global2.js' %}"></script>
 </body>
 </html>

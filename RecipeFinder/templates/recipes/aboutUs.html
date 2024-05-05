@@ -7,28 +7,24 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>About Us</title>
-    <link rel="stylesheet" href="{% static 'recipes/style/global.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'recipes/style/AboutUs.css' %}?{% now 'U' %}"/>
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <!-- Header -->
 <header>
-    <div class="left-side">
+    <div class="left-side hide-mobile">
 
-        <div class="logo">
-            <h1>
-                <a href="{% url 'index' %}">Foo<span>dies</span></a>
-            </h1>
-        </div>
 
         <nav class="hide-mobile">
             <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'favorite' %}">My Saved Recipes</a></li>
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'favorite' %}">Favorite</a></li>
                 {#                <li><a class="active"  href="{% url 'discover' %}">Discover</a></li>#}
                 <li class="select-container">
-                    <p class="select-paragraph">Categories</p>
+                    <p class="select-paragraph">Meals</p>
                     <div class="select-category">
                         {% for category in Categories %}
                             <a href="{% url 'get_category' category_id=category.id %}">
@@ -37,18 +33,31 @@
                         {% endfor %}
                     </div>
                 </li>
-                <li class="active"><a href="{% url 'AboutUs' %}">About Us</a></li>
+                <li><a href="{% url 'AboutUs' %}">About Us</a></li>
             </ul>
         </nav>
+
+
+    </div>
+
+    <div class="logo">
+        <h1>
+            <a href="{% url 'index' %}">Foo<span>dies</span></a>
+        </h1>
     </div>
 
     <div class="right-side">
-        <div class="input-icons">
+
+
+        <form class="search-field">
             <input type="search" class="input-field" placeholder="search"/>
-            <button class="search-icon">
-                <img src="{% static 'assets/Icon.svg' %}" alt="Search Icon" class="search-icon"/>
-            </button>
-        </div>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                      stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.5 17.5L13.875 13.875" stroke="#64748B" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+        </form>
 
         <a href="#" class="menu">
             <svg
@@ -62,6 +71,20 @@
                 />
             </svg>
         </a>
+
+        <div>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'users:profile' %}">
+                    <img src="{% static 'Assets/profile.svg' %}" alt="profile icon" width="40px" height="40px">
+
+                </a>
+            {% else %}
+                <div class="hide-mobile verification-btn ">
+                    <a class="loginInBtn" href="{% url 'users:login_view' %}">login</a>
+                    <a class="signInBtn" href="{% url 'users:register' %}">Sign Up</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 </header>
 

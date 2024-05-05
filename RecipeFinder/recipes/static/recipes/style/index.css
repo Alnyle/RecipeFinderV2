@@ -329,7 +329,7 @@ main .wrapper-top {
 
 .cart-top img {
     border-radius: 5px 5px 0 0;
-    height: 200px;
+    height: 250px;
 }
 
 .cart-top .like-icon {
@@ -371,7 +371,6 @@ main .wrapper-top {
     align-items: center;
     right: 8px;
     top: 8px;
-    /* z-index: 99; */
 }
 
 
@@ -414,8 +413,6 @@ main .wrapper-top {
 
 .cart-bottom .rec-details .rec-level {
     font-size: 1.4rem;
-
-
 }
 
 
