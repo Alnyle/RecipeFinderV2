@@ -3,15 +3,35 @@ const form = document.querySelector('form');
 
 const ingredients = document.querySelector(".ingredients");
 const addBtn = document.querySelector("#add_Ingredient");
+const deleteBtnEls = document.querySelectorAll('.delete_Ingredient');
+
 
 
 
 const recipeDescriptionEl = document.querySelector('#recipe_description');
 const recipeIDEl = document.querySelector('#recipe_id')
 const recipeNameEl = document.querySelector('#recipe_name')
-const courseNameEl = document.querySelector('#course_name')
+const courseNameEls = document.querySelector('#course_name')
 
-console.log(addBtn);
+
+
+
+
+
+
+// deleteBtnEls.forEach(deleteBtnEl => {
+//   deleteBtnEl.addEventListener('click', e => {
+//     // e.target.preventDefault();
+//         let ele = e.target;
+//
+//     // if (ingredients.childElementCount >= 2) {
+//         let ingredientElement = ele.parentNode.parentNode;
+//         console.log(ingredientElement)// Get the parent ingredient element
+//         // removeNode(ingredientElement); // Remove the ingredient
+//     // }
+//   })
+//
+// })
 
 
 
@@ -21,7 +41,7 @@ console.log(addBtn);
 //     const recipeID = recipeIDEl.value;
 //
 // })
-//
+
 
 
 
@@ -30,11 +50,18 @@ addBtn.addEventListener("click", (e) => {
 
   e.preventDefault();
 
-  // Creating a new ingredient container element
+
+  let numberOfChildrens = ingredients.childElementCount;
+
+
   const ingredientElement = document.createElement("div");
   ingredientElement.classList.add("ingredient");
 
-  // Creating and appending the first row of inputs
+  let x = ingredients.childElementCount
+  console.log(x)
+  ingredientElement.id = String(x);
+
+
   const formField = document.createElement("div");
   formField.classList.add("form-field");
 
@@ -83,11 +110,23 @@ addBtn.addEventListener("click", (e) => {
   formField2.appendChild(ingredientDescInput);
   formField2.appendChild(sm);
 
+
+  // const deleteBtnDiv = document.createElement('div');
+  // deleteBtnDiv.classList.add('delete-btn');
+  // const deleteBtn = document.createElement('button')
+  // deleteBtn.setAttribute('type', 'button');
+  // deleteBtn.classList.add('delete_Ingredient')
+  // deleteBtn.textContent = 'remove Ingredient'
+  // deleteBtnDiv.appendChild(deleteBtn);
+
+
+
   const line = document.createElement('hr');
 
   // Appending the second row to the ingredient container
   ingredientElement.appendChild(formField);
   ingredientElement.appendChild(formField2);
+  // ingredientElement.appendChild(deleteBtnDiv);
   ingredientElement.appendChild(line);
 
 
@@ -95,8 +134,9 @@ addBtn.addEventListener("click", (e) => {
   // Appending the new ingredient container to the ingredients container
   ingredients.appendChild(ingredientElement);
 
-
 });
+
+
 
 
 // form.addEventListener('submit', (e) => {

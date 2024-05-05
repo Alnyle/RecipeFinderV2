@@ -158,9 +158,13 @@
                         <div class="col-1">
                           <label for="course_name">Course Name</label>
                           <select name="course_name" id="course_name">
-                              <option value="dessert">appetizers</option>
-                              <option value="dessert">dessert</option>
-                              <option value="dessert">main course</option>
+                              {% for category in Categories %}
+                                  <option value="{{ category.id }}">{{ category.name }}</option>
+                              {% endfor %}
+                              
+{#                              <option value="dessert">appetizers</option>#}
+{#                              <option value="dessert">dessert</option>#}
+{#                              <option value="dessert">main course</option>#}
                           </select>
                         </div>
                         <div class="col-2">
@@ -175,13 +179,13 @@
                     <div class="ingredient">
                       <div class="form-field ingred">
                           <label for="Ingredient_name">Ingredient Name</label>
-                          <input type="text" class="ingredient_name">
+                          <input type="text" name="ingredient_name" class="ingredient_name">
                           <small></small>
                       </div>
     
                       <div class="form-field ingred">
                         <label for="Ingredient_quantity">Ingredient Quantity</label>
-                        <input type="number" class="ingredient_quantity">
+                        <input type="number" name="ingredient_quantity" class="ingredient_quantity">
                         <small></small>
                       </div>  
                         
@@ -191,16 +195,18 @@
                                   placeholder="Describe your recipe here" rows="15" cols="50"></textarea>
                         <small></small>
                       </div>
-                        
+                      
+{#                      <div class="delete-btn">#}
+{#                          <button class="delete_Ingredient" type="button">remove Ingredient</button>#}
+{#                      </div>#}
                         <hr>
                     </div>
                     
                   </div>
-                  <div class="del-add-btn">
+                  <div class="add-btn">
                       <button id="add_Ingredient">+ Add Ingredient</button>
-                      
                   </div>
-        
+
                 <div class="recipe_desc">
                     <label for="recipe_description">Recipe Description</label>
                     <textarea name="recipe_description" id="recipe_description" placeholder="Describe your recipe here"></textarea>

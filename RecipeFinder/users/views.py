@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+
+from recipes.models import Category
 from .models import Foodie
 
 from recipes import views
@@ -87,4 +89,7 @@ def profile(request):
 
 
 def addRecipePage(request):
-    return render(request, "users/addRecipe.html")
+    categories = Category.objects.all()
+    return render(request, "users/addRecipe.html", {
+        'Categories': categories,
+    })

@@ -125,16 +125,27 @@ def AboutUs(request):
 
 def addRecipe(request):
     user = request.user
-    if user.is_authenticated and user.is_staff:
+    if True:
         form = request.POST
         recipeName = form.get('recipe_name')
-        category = form.get('course_name')
+        category_id = form.get('course_name')
         recipeImage = form.get('recipe_image')
+        ingredientName = form.getlist('ingredient_name')
+        ingredientQuantity = form.getlist('ingredient_quantity')
         recipeDescription = form.get('recipe_description')
+        print(category_id)
 
-        Ingredients = form.get('ingredients')
+
+        # new_recipe = Recipe.objects.create(
+        #     name=recipeName,
+        #     category=category_id,
+        #
+        #
+        # )
+
+        # Ingredients = form.get('ingredients')
         # Ingredients functionality does work yet
-
-        return HttpResponse(status=204)
+        return redirect('index')
+        # return HttpResponse(status=204)
 
     return HttpResponse(status=302) # find better status code

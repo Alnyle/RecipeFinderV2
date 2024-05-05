@@ -73,7 +73,8 @@ form div {
 }
 
 
-.del-add-btn {
+.add-btn,
+.delete-btn {
     display: flex;
     flex-direction: row;
     gap: 1.6rem;
@@ -81,7 +82,8 @@ form div {
 }
 
 
-.del-add-btn button {
+.add-btn button,
+.delete-btn button {
     padding: 12px 14px;
     /*background-color: #208C64;*/
     border: 2px solid #208C64;
@@ -93,7 +95,8 @@ form div {
 
 }
 
-.del-add-btn button:hover {
+.add-btn button:hover,
+.delete-btn button:hover {
     background-color: #208C64;
     color: white;
 }
