@@ -141,7 +141,7 @@
 
 
         <div class="form-wrapper">
-              <form method="POST" action="{% url 'addRecipe' %}">
+              <form method="POST" action="{% url 'addRecipe' %}" enctype='multipart/form-data'>
                 {% csrf_token %}
                 <div class="recipe_info">
                     
@@ -161,16 +161,35 @@
                               {% for category in Categories %}
                                   <option value="{{ category.id }}">{{ category.name }}</option>
                               {% endfor %}
-                              
-{#                              <option value="dessert">appetizers</option>#}
-{#                              <option value="dessert">dessert</option>#}
-{#                              <option value="dessert">main course</option>#}
+                          
                           </select>
-                        </div>
+                        </div>           
                         <div class="col-2">
+                          <label for="recipe_level">Recipe Level</label>
+                          <select name="recipe_level">
+                              {% for level in levels %}
+                                  <option value="{{ level.name }}">{{ level.name }}</option>
+                              {% endfor %}
+                          </select>
+                        </div>    
+                        <div>
+                              <label for="publisher_name">Publisher Name</label>
+                              <select name="publisher">
+                                  {% for publisher in Publishers %}
+                                      <option value="{{ publisher.id }}">{{ publisher.name }}</option>
+                                  {% endfor %}
+                              </select>
+                        </div>
+                        <div class="col-3">
                              <label for=" MealImage"> Meal Image</label>
                              <input type="file" name="recipe_image">
                         </div>
+                  
+                      <div class="form-field ingred">
+                            <label for="duration">How long time take to cook</label>
+                            <input type="number" name="recipe_duration" class="duration">
+                            <small></small>
+                      </div>  
                 </div>
         
                 <div class="ingredients">

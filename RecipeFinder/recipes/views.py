@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.urls import reverse
 from django import template
-from .models import Recipe, RecipeIngredient, Bookmark, Category
+from .models import Recipe, RecipeIngredient, Bookmark, Category, Ingredient, Publisher, Level
 
 from users import views
 
@@ -129,23 +130,47 @@ def addRecipe(request):
         form = request.POST
         recipeName = form.get('recipe_name')
         category_id = form.get('course_name')
-        recipeImage = form.get('recipe_image')
-        ingredientName = form.getlist('ingredient_name')
-        ingredientQuantity = form.getlist('ingredient_quantity')
+        recipeImage = request.FILES.get('recipe_image')
+        publisher_id = form.get('publisher')
+        level_name = form.get('recipe_level')
+        duration = form.get('recipe_duration')
+        print(level_name, "worked")
+
+        fs = FileSystemStorage()
+        filename = fs.save(recipeName, recipeImage)
+        uploaded_file_url = fs.url(filename)
+
         recipeDescription = form.get('recipe_description')
-        print(category_id)
+        category = get_object_or_404(Category, id=category_id)
+        publisher = get_object_or_404(Publisher, id=publisher_id)
+        level = get_object_or_404(Level, name=level_name)
 
+        new_recipe = Recipe.objects.create(
+            name=recipeName,
+            publisher=publisher,
+            description=recipeDescription,
+            duration=duration,
+            Level=level,
+            category=category,
+            image_link=uploaded_file_url,
+        )
 
-        # new_recipe = Recipe.objects.create(
-        #     name=recipeName,
-        #     category=category_id,
-        #
-        #
-        # )
+        # recipe ingredients
+        ingredientNames = form.getlist('ingredient_name')
+        ingredientQuantities = form.getlist('ingredient_quantity')
+        ingredientDescriptions = form.getlist('ingredient_description')
+        for name, quantity, description in zip(ingredientNames, ingredientQuantities, ingredientDescriptions):
+            ingredient, _ = Ingredient.objects.get_or_create(name=name)
+            RecipeIngredient.objects.create(
+                recipe=new_recipe,
+                ingredient=ingredient,
+                quantity=quantity,
+                description=description
+            )
 
         # Ingredients = form.get('ingredients')
         # Ingredients functionality does work yet
         return redirect('index')
         # return HttpResponse(status=204)
 
-    return HttpResponse(status=302) # find better status code
+    return HttpResponse(status=302)  # find better status code

@@ -12,3 +12,4 @@ urlpatterns = [
     path('<int:category_id>/Category', views.get_category, name="get_category"),
     path('addRecipe/', views.addRecipe, name='addRecipe'),
 ]
+

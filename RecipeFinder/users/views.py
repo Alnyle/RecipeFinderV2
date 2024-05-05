@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from recipes.models import Category
+from recipes.models import Category, Publisher, Level
 from .models import Foodie
 
 from recipes import views
@@ -90,6 +90,10 @@ def profile(request):
 
 def addRecipePage(request):
     categories = Category.objects.all()
+    publishers = Publisher.objects.all()
+    levels = Level.objects.all()
     return render(request, "users/addRecipe.html", {
         'Categories': categories,
+        'Publishers': publishers,
+        'levels': levels,
     })
