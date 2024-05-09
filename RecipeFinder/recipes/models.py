@@ -53,7 +53,7 @@ class Recipe(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="recipes")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient', related_name='recipes')
     steps = models.TextField(null=False, blank=False)
-    image_link = models.CharField(max_length=1000)
+    image_link = models.CharField(max_length=1000, default='defaultImage')
 
 
 # class Steps(models.Model):

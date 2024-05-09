@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from recipes.models import Category, Publisher, Level
+from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark
 from .models import Foodie
 
 from recipes import views
@@ -97,3 +97,31 @@ def addRecipePage(request):
         'Publishers': publishers,
         'levels': levels,
     })
+
+
+def editRecipePage(request):
+    recipes = Recipe.objects.all()
+    RecipeIngredients = RecipeIngredient.objects.all()
+    bookmarks = None
+    categories = None
+    Categories = Category.objects.all()
+
+    # if user authenticated and have saved recipe get them
+    if request.user.is_authenticated:
+        user = request.user
+        bookmarks = Bookmark.objects.filter(user=user).select_related("recipe")
+
+    return render(request, "users/EditRecipe.html", {
+        'recipes': recipes,
+        'RecipeIngredients': RecipeIngredients,
+        'bookmarks': bookmarks,
+        'Categories': Categories,
+    })
+
+
+def deleteRecipe(request, recipe_id):
+    user = request.user
+    if user.is_staff and user.is_superuser:
+        recipe = get_object_or_404(Recipe, id=recipe_id)
+        recipe.delete()
+        return redirect('users:profile')

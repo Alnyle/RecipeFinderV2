@@ -36,7 +36,6 @@ def index(request):
 
 
 def add_to_favorites(request, recipe_id):
-    print("worked")
     if request.method == "POST":
         if request.user.is_authenticated:
             recipe = Recipe.objects.get(pk=recipe_id)
@@ -126,7 +125,7 @@ def AboutUs(request):
 
 def addRecipe(request):
     user = request.user
-    if True:
+    if user.is_authenticated and request.method == "POST" and user.is_superuser:
         form = request.POST
         recipeName = form.get('recipe_name')
         category_id = form.get('course_name')
@@ -134,11 +133,16 @@ def addRecipe(request):
         publisher_id = form.get('publisher')
         level_name = form.get('recipe_level')
         duration = form.get('recipe_duration')
+        steps = form.get('recipe_steps')
         print(level_name, "worked")
 
-        fs = FileSystemStorage()
-        filename = fs.save(recipeName, recipeImage)
-        uploaded_file_url = fs.url(filename)
+        if recipeImage is None:
+            default_Image = 'defaultImage'
+            uploaded_file_url = default_Image
+        else:
+            fs = FileSystemStorage()
+            filename = fs.save(recipeName, recipeImage)
+            uploaded_file_url = fs.url(filename)
 
         recipeDescription = form.get('recipe_description')
         category = get_object_or_404(Category, id=category_id)
@@ -153,6 +157,7 @@ def addRecipe(request):
             Level=level,
             category=category,
             image_link=uploaded_file_url,
+            steps=steps,
         )
 
         # recipe ingredients
@@ -174,3 +179,5 @@ def addRecipe(request):
         # return HttpResponse(status=204)
 
     return HttpResponse(status=302)  # find better status code
+
+

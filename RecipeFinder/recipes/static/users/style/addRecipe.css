@@ -106,10 +106,15 @@ form div {
     gap: 8px;
 }
 
-.recipe_desc textarea {
+.recipe_desc textarea,
+.recipe_cookSteps textarea {
     border: 1px solid #d4d4d4;
     padding: 12px 8px;
     min-height: 400px;
+}
+
+.recipe_cookSteps {
+    margin-top: 1.2rem;
 }
 
 input[type=submit] {

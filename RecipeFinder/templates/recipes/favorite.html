@@ -147,7 +147,12 @@
                     {% if request.user|check_bookmark:recipe.id %}
                         <div class="cart">
                             <div class="cart-top">
-                                <img src="{% static 'Assets/hero.jpg' %}" alt="recipe image">
+                                {% if recipe.image_link == 'defaultImage' %}
+                                    <img src="{% static 'Assets/defaultImage.png' %}" alt="Default Image">
+                                {% else %}
+                                    <img src="{{ recipe.image_link }}" alt="{{ recipe.name }} Image">
+                                {% endif %}
+                            
                                  <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
                                       action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
                                     {% csrf_token %}
@@ -182,9 +187,9 @@
                             </div>
                         </div>
                     {% endif %}
-                    {#                {% if forloop.counter|divisibleby:4 and not forloop.last %}#}
-                    {#                    </div><div class="row">#}
-                    {#                {% endif %}#}
+                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                       </div><div class="rows">
+                    {% endif %}
                 {% empty %}
                     <h1>Empty</h1>
                 {% endfor %}

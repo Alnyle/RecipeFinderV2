@@ -19,6 +19,7 @@ const courseNameEls = document.querySelector('#course_name')
 
 
 
+
 // deleteBtnEls.forEach(deleteBtnEl => {
 //   deleteBtnEl.addEventListener('click', e => {
 //     // e.target.preventDefault();

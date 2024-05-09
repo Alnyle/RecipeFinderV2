@@ -182,6 +182,60 @@
 }
 
 
+.EditBtns {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.EditBtns .Edit_recipe_btn,
+.EditBtns .deleteRecipe_form {
+    width: 50%;
+}
+
+.EditBtns .Edit_recipe_btn {
+    background-color: white;
+}
+
+.EditBtns form .delete_recipe_btn {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: unset;
+    border: none;
+}
+
+.EditBtns form .delete_recipe_btn:hover {
+    color: white;
+}
+
+
+.EditBtns .btn {
+    width: 100%;
+    padding: 12px 8px;
+    border: 1px solid #343635;
+    color: #000000;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.EditBtns .btn:hover {
+    background-color: #208C64;
+    color: white;
+    border: none;
+}
+
+
 @media only screen and (min-width: 500px) {
     .carts-container .rows {
         flex-direction: row;

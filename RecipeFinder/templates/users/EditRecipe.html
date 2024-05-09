@@ -2,6 +2,7 @@
 {% load bookmark_filter %}
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +11,11 @@
     <title>Django Project</title>
     <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'users/style/profile.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'users/style/addRecipe.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'users/style/EditRecipe.css' %}?{% now "U" %}"/>
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  
+
 <!-- Header -->
 <!-- Header -->
 <header>
@@ -93,12 +94,12 @@
 
 <div class="sub-header">
     <div class="wrapper">
-    <nav class="sub-header-nav">
-        <ul class="subheader-list">
-            <li><a href="{% url 'users:addRecipePage' %}" class="active">Add recipe</a></li>
-            <li><a href="{% url 'users:editRecipePage' %}">Edit recipe</a></li>
-        </ul>
-    </nav>
+        <nav class="sub-header-nav">
+            <ul class="subheader-list">
+                <li><a href="{% url 'users:addRecipePage' %}">Add recipe</a></li>
+                <li><a href="{% url 'users:editRecipePage' %}" class="active">Edit recipe</a></li>
+            </ul>
+        </nav>
     </div>
 </div>
 
@@ -136,113 +137,89 @@
     </nav>
 </aside>
 
-<!-- Main -->
+<div class="my-recipes">
+    <div class="my-recipes-wrapper">
+        <div class="recipes-head">
 
-
-
-        <div class="form-wrapper">
-              <form method="POST" action="{% url 'addRecipe' %}" enctype='multipart/form-data'>
-                {% csrf_token %}
-                <div class="recipe_info">
-                    
-                 <div class="row-1">
-                       <div class="field-form">
-                          <label for="recipe_name">Recipe Name</label>
-                          <input type="text" name="recipe_name" id="recipe_name">
-                          <small></small>
-                        </div>
-                      </div>
-                 </div>
-    
-                  <div class="row-2">
-                        <div class="col-1">
-                          <label for="course_name">Course Name</label>
-                          <select name="course_name" id="course_name">
-                              {% for category in Categories %}
-                                  <option value="{{ category.id }}">{{ category.name }}</option>
-                              {% endfor %}
-                          
-                          </select>
-                        </div>           
-                        <div class="col-2">
-                          <label for="recipe_level">Recipe Level</label>
-                          <select name="recipe_level">
-                              {% for level in levels %}
-                                  <option value="{{ level.name }}">{{ level.name }}</option>
-                              {% endfor %}
-                          </select>
-                        </div>    
-                        <div>
-                              <label for="publisher_name">Publisher Name</label>
-                              <select name="publisher">
-                                  {% for publisher in Publishers %}
-                                      <option value="{{ publisher.id }}">{{ publisher.name }}</option>
-                                  {% endfor %}
-                              </select>
-                        </div>
-                        <div class="col-3">
-                             <label for=" MealImage"> Meal Image</label>
-                             <input type="file" name="recipe_image">
-                        </div>
-                  
-                      <div class="form-field ingred">
-                            <label for="duration">How long time take to cook</label>
-                            <input type="number" name="recipe_duration" class="duration">
-                            <small></small>
-                      </div>  
-                </div>
-        
-                <div class="ingredients">
-    
-                  <h3>ingredients</h3>
-                    <div class="ingredient">
-                      <div class="form-field ingred">
-                          <label for="Ingredient_name">Ingredient Name</label>
-                          <input type="text" name="ingredient_name" class="ingredient_name">
-                          <small></small>
-                      </div>
-    
-                      <div class="form-field ingred">
-                        <label for="Ingredient_quantity">Ingredient Quantity</label>
-                        <input type="number" name="ingredient_quantity" class="ingredient_quantity">
-                        <small></small>
-                      </div>  
-
-                      <div class="form-field ingred">
-                        <label for="Ingredient_desc">Ingredient description (optional)</label>
-                        <textarea name="ingredient_description" class="ingredient_desc"
-                                  placeholder="Describe your recipe here" rows="15" cols="50"></textarea>
-                        <small></small>
-                      </div>
-                        
-                        
-
-                      
-{#                      <div class="delete-btn">#}
-{#                          <button class="delete_Ingredient" type="button">remove Ingredient</button>#}
-{#                      </div>#}
-                        <hr>
-                    </div>
-                    
-                  </div>
-                  <div class="add-btn">
-                      <button id="add_Ingredient">+ Add Ingredient</button>
-                  </div>
-
-                <div class="recipe_desc">
-                    <label for="recipe_description">Recipe Description</label>
-                    <textarea name="recipe_description" id="recipe_description" placeholder="Describe your recipe here"></textarea>
-                </div>      
-                  <div class="recipe_cookSteps">
-                    <label for="recipe_steps">Recipe Steps</label>
-                    <textarea name="recipe_steps" id="recipe_description" placeholder="Describe your recipe here"></textarea>
-                </div>
-                
-                <input type="submit" value="Submit Recipe">
-            </form>
-
+            <div class="links">
+                <p>Saved Recipes</p>
+            </div>
         </div>
-    
+
+
+        <div class="carts-container">
+            <div class="rows">
+                {% for recipe in recipes %}
+                    <div class="cart">
+                        <div class="cart-top">
+                            {% if recipe.image_link == 'defaultImage' %}
+                                <img src="{% static 'Assets/defaultImage.png' %}" alt="Default Image">
+                            {% else %}
+                                <img src="{{ recipe.image_link }}" alt="{{ recipe.name }} Image">
+                            {% endif %}
+
+                            <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
+                                  action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
+                                {% csrf_token %}
+                                <div>
+                                    {% if request.user.is_authenticated %}
+
+                                        {% if request.user|check_bookmark:recipe.id %}
+                                            <i class="fa-solid marked favorite-icon fa-heart"
+                                               id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
+                                        {% else %}
+                                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                               recipeID="{{ recipe.id }}"></i>
+                                        {% endif %}
+                                    {% else %}
+                                        <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                           recipeID="{{ recipe.id }}"></i>
+                                        <!-- Recipe is bookmarked by the current user -->
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                        <div class="cart-bottom">
+                            <div class="rec-details">
+                                <p class="rec-level ">{{ recipe.Level }}</p>
+                                <h3 class="rec-name"><a style="color:black"
+                                                        href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
+                                </h3>
+                            </div>
+                            <div class="addition-details">
+                                <p>{{ recipe.duration }} mins</p>
+                            </div>
+                        </div>
+
+                        <div class="EditBtns">
+                            
+{#                                href="{% url '' %}"#}
+                                <a class="Edit_recipe_btn btn" >
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <p>Edit Recipe</p>
+                                </a>
+                            
+                                <form class="deleteRecipe_form  btn" method="POST" action="{% url 'users:deleteRecipe' recipe_id=recipe.id %}">
+                                    {% csrf_token %}
+                                    <button class="delete_recipe_btn ">
+                                        <i class="fa-solid fa-trash"></i>
+                                        <p>Delete Recipe</p>
+                                    </button>
+                                </form>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                        </div>
+                        <div class="rows">
+                    {% endif %}
+                    {% empty %}
+                    <h1>Empty</h1>
+                {% endfor %}
+                </div>
+        </div>
+    </div>
+
+</div>
 
 <!-- Footer -->
 <footer>
@@ -288,6 +265,6 @@
 </footer>
 
 <script src="{% static 'recipes/js/global.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'users/js/addRecipe.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'users/js/deleteRecipe.js' %}?{% now 'U' %}"></script>
 </body>
 </html>
