@@ -1,3 +1,4 @@
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -5,7 +6,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark, RecipeForm
+from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark, RecipeForm, Level
 from .models import Foodie
 
 from recipes import views
@@ -128,15 +129,52 @@ def deleteRecipe(request, recipe_id):
 
 
 def editRecipeDetails(request, recipe_id):
+    # 2 - get the recipe
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     Categories = Category.objects.all()
     levels = Level.objects.all()
     Publishers = Publisher.objects.all()
     ingredients = RecipeIngredient.objects.filter(recipe=recipe)
 
-
+    # if the request method was POST then form info
     if request.method == 'POST':
-        pass
+        form = request.POST
+
+        # 1- get the data from the form
+        recipeName = form.get('recipe_name')
+        category_id = form.get('course_name')
+        recipeImage = request.FILES.get('recipe_image')
+        publisher_id = form.get('publisher')
+        level_name = form.get('recipe_level')
+        duration = form.get('recipe_duration')
+        steps = form.get('recipe_steps')
+
+        # 3-  if recipe image is exist in the form then save as url
+        if recipeImage is not None:
+            fs = FileSystemStorage()
+            filename = fs.save(recipeName, recipeImage)
+            uploaded_file_url = fs.url(filename)
+            recipe.image_link = uploaded_file_url
+
+        recipeDescription = form.get('recipe_description')
+        # category = get_object_or_404(Category, id=category_id)
+        publisher = get_object_or_404(Publisher, id=publisher_id)
+        level = get_object_or_404(Level, name=level_name)
+
+        # categoryI = Category.objects.get(pk=category_id)
+
+        recipe.name = recipeName
+        recipe.publisher = publisher
+        recipe.description = recipeDescription
+        recipe.duration = duration
+        recipe.Level = level
+        recipe.recipes = category_id,
+        recipe.steps = steps
+
+        recipe.updateRecipe()
+
+        return redirect('users:editRecipePage')
+
     else:
         return render(request, 'users/editRecipeDetails.html', {
             'recipe': recipe,

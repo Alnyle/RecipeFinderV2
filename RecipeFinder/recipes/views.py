@@ -138,7 +138,6 @@ def addRecipe(request):
         level_name = form.get('recipe_level')
         duration = form.get('recipe_duration')
         steps = form.get('recipe_steps')
-        print(category_id, "worked")
 
         if recipeImage is None:
             default_Image = 'defaultImage'

@@ -141,7 +141,7 @@
 
 
 <div class="form-wrapper">
-    <form method="POST" action="{% url 'addRecipe' %}" enctype='multipart/form-data'>
+    <form method="POST" action="{% url 'users:editRecipeDetails' recipe_id=recipe.id %}" enctype='multipart/form-data'>
         {% csrf_token %}
         <div class="recipe_info">
 
@@ -211,33 +211,47 @@
                 <div class="ingredient">
                     <div class="form-field ingred">
                         <label for="Ingredient_name">Ingredient Name</label>
-                        <input type="text" name="ingredient_name" class="ingredient_name" value="{{ ingredientInfo.ingredient.name }}">
+                        <input type="text" name="ingredient_name" class="ingredient_name"
+                               value="{{ ingredientInfo.ingredient.name }}">
                         <small></small>
                     </div>
-    
+
                     <div class="form-field ingred">
                         <label for="Ingredient_quantity">Ingredient Quantity</label>
-                        <input type="number" name="ingredient_quantity" class="ingredient_quantity" value="{{ ingredientInfo.quantity }}">
+                        <input type="number" name="ingredient_quantity" class="ingredient_quantity"
+                               value="{{ ingredientInfo.quantity }}">
                         <small></small>
                     </div>
-    
+
                     <div class="form-field ingred">
                         <label for="Ingredient_desc">Ingredient description (optional)</label>
                         <textarea name="ingredient_description" class="ingredient_desc"
-                                  placeholder="Describe your recipe here" rows="15" cols="50">{{ ingredientInfo.description }}</textarea>
+                                  placeholder="Describe your recipe here" rows="15"
+                                  cols="50">{{ ingredientInfo.description }}</textarea>
                         <small></small>
                     </div>
-                
+
                     <div class="delete-btn">
-                          <button class="delete_Ingredient" type="button">remove Ingredient</button>
+                        <button class="delete_Ingredient" type="button">remove Ingredient</button>
                     </div>
                     <hr>
                 </div>
-                
+
             {% endfor %}
         </div>
-
-            <input type="submit" value="Submit Recipe">
+        <div class="add-btn">
+            <button id="add_Ingredient">+ Add Ingredient</button>
+        </div>
+        <div class="recipe_desc">
+            <label for="recipe_description">Recipe Description</label>
+            <textarea name="recipe_description" id="recipe_description"
+                      placeholder="Describe your recipe here">{{ recipe.description }}</textarea>
+        </div>
+        <div class="recipe_cookSteps">
+            <label for="recipe_steps">Recipe Steps</label>
+            <textarea name="recipe_steps" id="recipe_description" placeholder="Describe your recipe here">{{ recipe.steps }}</textarea>
+        </div>
+        <input type="submit" value="Submit Recipe">
     </form>
 
 </div>

@@ -55,6 +55,9 @@ class Recipe(models.Model):
     steps = models.TextField(null=False, blank=False)
     image_link = models.CharField(max_length=1000, default='defaultImage')
 
+    def updateRecipe(self):
+        self.save()
+
 
 # class Steps(models.Model):
 #     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="steps")
