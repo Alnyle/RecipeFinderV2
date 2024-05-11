@@ -64,6 +64,7 @@ selectContainer.addEventListener('click', e => {
     else {selectCategory.style.display= 'none'}
 });
 
+
 // for mobile navbar category section
 const selectContainerM = document.querySelector('.subCategories');
 const selectCategoryM = document.querySelector('.select-category-m');

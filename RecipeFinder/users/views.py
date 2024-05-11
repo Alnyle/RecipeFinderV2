@@ -84,9 +84,12 @@ def logout_view(request):
 
 
 def profile(request):
+    Categories = Category.objects.all()
     if not request.user.is_authenticated:
         return render(request, reverse("login_view"))
-    return render(request, "users/profile.html")
+    return render(request, "users/profile.html", {
+        'Categories': Categories,
+    })
 
 
 def addRecipePage(request):

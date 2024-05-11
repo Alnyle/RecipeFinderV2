@@ -89,17 +89,34 @@
         </div>
     </div>
 </header>
-<div class="sub-header">
-    <div class="wrapper">
-    <nav class="sub-header-nav">
-        <ul class="subheader-list">
-            <li><a href="{% url 'users:addRecipePage' %}">Add recipe</a></li>
-            <li><a href="#">Edit recipe</a></li>
-            <li><a href="{% url 'users:logout_view' %}">Logout</a></li>
-        </ul>
-    </nav>
+
+{% if request.user.is_superuser %}
+
+    <div class="sub-header">
+        <div class="wrapper">
+            <nav class="sub-header-nav">
+                <ul class="subheader-list">
+                    <li><a href="{% url 'users:addRecipePage' %}">Add recipe</a></li>
+                    <li><a href="{% url 'users:editRecipePage' %}">Edit recipe</a></li>
+                    <li class="sub-select-container">
+                        <p class="sub-select-paragraph">Level</p>
+                        <div class="sub-select-category">
+                            <a href="#">
+                                Add Level
+                            </a>                   
+                            <a href="#">
+                                Edit Level
+                            </a>
+                        </div>
+                    </li>
+
+                    {#                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>#}
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
+
+{% endif %}
 
 <aside>
     <img src="{% static 'assets/mobile-exit.svg' %}" alt="Exit mobile nav" class="exit hide-tablet"/>
@@ -136,9 +153,6 @@
 </aside>
 
 <!-- Main -->
-
-
-
 
 
 <!-- Footer -->
@@ -184,6 +198,7 @@
     </div>
 </footer>
 
-<script src="{% static 'recipes/js/global.js' %}"></script>
+<script src="{% static 'recipes/js/global2.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'users/js/profile.js' %}?{% now 'U' %}"></script>
 </body>
 </html>
