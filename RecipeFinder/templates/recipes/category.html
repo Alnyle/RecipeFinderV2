@@ -144,7 +144,7 @@
         <div class="carts-container">
             <div class="rows">
                 {% for recipe in recipes %}
-                    {% if request.user|check_bookmark:recipe.id %}
+                    
                         <div class="cart">
                             <div class="cart-top">
                                 {% if recipe.image_link == 'defaultImage' %}
@@ -185,7 +185,7 @@
                                 </div>
                             </div>
                         </div>
-                    {% endif %}
+          
                     {% if forloop.counter|divisibleby:5 and not forloop.last %}
                        </div><div class="rows">
                     {% endif %}

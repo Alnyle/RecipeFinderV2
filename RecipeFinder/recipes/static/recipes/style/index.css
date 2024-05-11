@@ -307,7 +307,7 @@ main .wrapper-top {
 
 .carts-container {
     display: grid;
-    grid-template-columns: repeat(1 , 1fr);
+    grid-template-columns: repeat(auto-fit , 1fr);
     width: 100%;
     gap: 16px;
 }
@@ -533,8 +533,8 @@ main .wrapper-top {
 @media only screen and (min-width: 500px) {
     .carts-container {
         flex-direction: row;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        /*grid-template-columns: repeat(2, 1fr);*/
+        /*grid-template-rows: repeat(2, 1fr);*/
     }
 }
 
@@ -544,9 +544,12 @@ main .wrapper-top {
         /*padding: 0 48px;*/
     }
     .carts-container {
-        flex-direction: row;
-        grid-template-columns: repeat(4 , 1fr);
-        grid-template-rows: repeat(1, 1fr);
+        display: grid;
+        width: 100%;
+        /*grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));*/
+        /*grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));*/
+        grid-template-columns: auto auto auto auto;
+        /*grid-template-rows: repeat(1, 1fr);*/
     }
 
 }

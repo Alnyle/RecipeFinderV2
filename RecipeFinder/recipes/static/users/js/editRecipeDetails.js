@@ -26,6 +26,22 @@ document.addEventListener('click', function(event) {
 
 
 
+// deleteBtnEls.forEach(deleteBtnEl => {
+//   deleteBtnEl.addEventListener('click', e => {
+//     // e.target.preventDefault();
+//         let ele = e.currentTarget;
+//
+//     // if (ingredients.childElementCount >= 2) {
+//         let ingredientElement = ele.parentNode.parentNode.parentNode;
+//         ingredientElement.removeChild(ele.parentNode.parentNode)
+//         // console.log(ingredientElement)// Get the parent ingredient element
+//         // removeNode(ingredientElement); // Remove the ingredient
+//     // }
+//   })
+//
+// })
+
+
 
 // form.addEventListener('submit', (e) => {
 //

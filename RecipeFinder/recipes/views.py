@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.urls import reverse
@@ -101,8 +102,12 @@ def discover(request):
 
 def get_category(request, category_id):
     bookmarks = None
-    recipes = Recipe.objects.filter(category=category_id)
-    Categories = Category.objects.all()
+    recipes = Recipe.objects.filter(category__id=category_id)
+
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+
     if request.user.is_authenticated:
         user = request.user
         bookmarks = Bookmark.objects.filter(user=user)
@@ -110,8 +115,7 @@ def get_category(request, category_id):
     return render(request, 'recipes/category.html', {
         "recipes": recipes,
         "bookmarks": bookmarks,
-        'Categories': Categories,
-
+        'Categories': categories_with_recipes,
     })
 
 
@@ -134,7 +138,7 @@ def addRecipe(request):
         level_name = form.get('recipe_level')
         duration = form.get('recipe_duration')
         steps = form.get('recipe_steps')
-        print(level_name, "worked")
+        print(category_id, "worked")
 
         if recipeImage is None:
             default_Image = 'defaultImage'

@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark
+from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark, RecipeForm
 from .models import Foodie
 
 from recipes import views
@@ -125,3 +125,23 @@ def deleteRecipe(request, recipe_id):
         recipe = get_object_or_404(Recipe, id=recipe_id)
         recipe.delete()
         return redirect('users:profile')
+
+
+def editRecipeDetails(request, recipe_id):
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    Categories = Category.objects.all()
+    levels = Level.objects.all()
+    Publishers = Publisher.objects.all()
+    ingredients = RecipeIngredient.objects.filter(recipe=recipe)
+
+
+    if request.method == 'POST':
+        pass
+    else:
+        return render(request, 'users/editRecipeDetails.html', {
+            'recipe': recipe,
+            'Categories': Categories,
+            'levels': levels,
+            'Publishers': Publishers,
+            'ingredients': ingredients,
+        })

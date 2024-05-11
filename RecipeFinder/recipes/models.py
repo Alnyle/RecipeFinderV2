@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-
+from django import forms
 # Create your models here.
 from django.db import models
 
@@ -61,8 +61,8 @@ class Recipe(models.Model):
 #     description = models.TextField(null=False, blank=False)
 #     order = models.PositiveIntegerField(default=1, unique=True)
 
-    # def __str__(self):
-    #     return f"{self.order}"
+# def __str__(self):
+#     return f"{self.order}"
 
 
 class RecipeIngredient(models.Model):
@@ -83,3 +83,9 @@ class Bookmark(models.Model):
     def check_bookmark(user, recipe_id):
         return Bookmark.objects.filter(user=user) and Bookmark.objects.filter(reciep=recipe_id).exists()
 
+
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = ['name', 'description', 'publisher', 'duration', 'category', 'ingredients', 'steps',
+                  'image_link']
