@@ -12,5 +12,8 @@ urlpatterns = [
     path('addRecipe/', views.addRecipePage, name='addRecipePage'),
     path('EditRecipe/', views.editRecipePage, name='editRecipePage'),
     path('deleteRecipe/<int:recipe_id>', views.deleteRecipe, name='deleteRecipe'),
-    path('editRecipeDetails/<int:recipe_id>', views.editRecipeDetails, name='editRecipeDetails')
+    path('editRecipeDetails/<int:recipe_id>', views.editRecipeDetails, name='editRecipeDetails'),
+    path('addLevel/', views.addLevel_view, name='addLevel_view'),
+    path('EditLevel/', views.EditLevel_view, name='EditLevel_view'),
+    path('deleteLevel/', views.deleteLevel_view, name='deleteLevel_view'),
 ]

@@ -1,7 +1,7 @@
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -132,7 +132,7 @@ def deleteRecipe(request, recipe_id):
 
 
 def editRecipeDetails(request, recipe_id):
-    # 2 - get the recipe
+    # 1 - get the recipe using id
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     Categories = Category.objects.all()
     levels = Level.objects.all()
@@ -143,7 +143,7 @@ def editRecipeDetails(request, recipe_id):
     if request.method == 'POST':
         form = request.POST
 
-        # 1- get the data from the form
+        # 2- get the data from the form
         recipeName = form.get('recipe_name')
         category_id = form.get('course_name')
         recipeImage = request.FILES.get('recipe_image')
@@ -186,3 +186,39 @@ def editRecipeDetails(request, recipe_id):
             'Publishers': Publishers,
             'ingredients': ingredients,
         })
+
+
+# add a level name to recipe
+def addLevel_view(request):
+    if request.method == 'POST':
+        level_name = request.POST.get('level_name')
+
+        # check if the level name already exist
+        if Level.objects.filter(name=level_name).exists():
+            message = 'Level name already exists'
+            return JsonResponse({'message': 'Level name already exists'}, status=400)
+
+        level = Level.objects.create(name=level_name)
+        return HttpResponse(status=200)
+    else:
+        return render(request, "users/AddLevelForm.html")
+
+
+def EditLevel_view(request):
+    levels = Level.objects.all()
+    return render(request, 'users/EditLevel.html', {
+        'levels': levels
+    })
+
+
+def deleteLevel_view(request):
+    if request.method == 'POST':
+        level_name = request.POST.get('level_name')
+        try:
+            level = Level.objects.get(name=level_name)
+            level.delete()
+            return HttpResponse(status=204)
+        except:
+            return HttpResponse(status=404)
+    else:
+        return HttpResponse(status=405)

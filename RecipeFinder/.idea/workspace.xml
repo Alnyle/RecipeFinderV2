@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b314b6-94e9-4e3f-a16b-3bee92e9d947" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/recipes/static/users/js/profile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/AddPublisher.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/static/users/js/AddLevelForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/static/users/js/EditLevel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/static/users/style/EditLevel.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/static/users/style/addLevelForm.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/AddLevelForm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/EditLevel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/js/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/js/global.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/static/users/style/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/users/style/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Python Script" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -72,9 +75,9 @@
       <recent name="E:\Project\RecipeFinder\RecipeFinder\Assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Project\RecipeFinder\recipes\static\Assets" />
       <recent name="E:\Project\RecipeFinder\templates\users" />
       <recent name="E:\Project\RecipeFinder\recipes\static\users\style" />
+      <recent name="E:\Project\RecipeFinder\recipes\static\Assets" />
       <recent name="E:\Project\RecipeFinder\recipes\static" />
       <recent name="E:\Project\RecipeFinder\recipes\static\recipes\style" />
     </key>
@@ -152,7 +155,8 @@
       <workItem from="1714915292631" duration="31126000" />
       <workItem from="1715239053397" duration="23243000" />
       <workItem from="1715274619105" duration="7620000" />
-      <workItem from="1715414704476" duration="28766000" />
+      <workItem from="1715414704476" duration="28979000" />
+      <workItem from="1715515889692" duration="36177000" />
     </task>
     <servers />
   </component>
