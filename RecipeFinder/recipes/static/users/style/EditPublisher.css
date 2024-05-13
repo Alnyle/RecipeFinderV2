@@ -1,6 +1,6 @@
 
 
-.level-wrapper {
+.publisher-wrapper {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
 }
 
 
-.level {
+.publisher {
     min-width: 350px;
     display: flex;
     flex-direction: row;
@@ -24,17 +24,17 @@
     background-color: #f4f7f4;
 }
 
-.level .item-name {
+.publisher .item-name {
     font-size: 1.6rem;
 }
 
-.level-wrapper .EditBtns  {
+.publisher-wrapper .EditBtns  {
     display: flex;
     flex-direction: row;
     gap: 4px;
 }
 
-.level-wrapper .EditBtns button {
+.publisher-wrapper .EditBtns button {
     padding: 8px 12px;
     background-color: unset;
     border-radius: 2px;
@@ -43,11 +43,11 @@
 }
 
 
-.level-wrapper .EditBtns form input {
+.publisher-wrapper .EditBtns form input {
     display: none;
 }
 
-.level-wrapper .EditBtns button:hover {
+.publisher-wrapper .EditBtns button:hover {
     color: #ffffff;
     background-color: #208C64;
     border-color: #ffffff;

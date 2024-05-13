@@ -30,6 +30,8 @@
     font-size: 1.4rem;
 }
 
+
+
 .form-wrapper input[type=submit] {
     background-color: unset;
     border: 1px solid #208C64;
@@ -69,6 +71,24 @@
 small {
     font-size: 1.6rem;
     margin-bottom: 8px;
+}
+
+textarea {
+  height: 350px;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+.form-wrapper .btns input {
+    padding: 12px 14px;
+}
+
+div.error textarea {
+    border: 1px solid crimson;
 }
 
 @media only screen and (min-width: 600px) {

@@ -36,14 +36,19 @@
 }
 
 
-.sub-select-container {
+.sub-select-container,
+.sub-select-container-2,
+.sub-select-container-3 {
     position: relative;
     transition: display .4s ease;
     transition-duration: 2s;
 }
 
 
-.sub-select-category {
+.sub-select-category,
+.sub-select-category-2,
+.sub-select-category-3
+{
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -57,7 +62,9 @@
     z-index: 999;
 }
 
-.sub-select-category a {
+.sub-select-category a,
+.sub-select-category-2 a,
+.sub-select-category-3 a {
     color: black;
     text-decoration: none;
     width: 100%;

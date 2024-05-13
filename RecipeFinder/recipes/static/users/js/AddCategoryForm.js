@@ -1,9 +1,9 @@
 
 
-const levelNameFieldEl = document.querySelector('#level_name')
+const categoryFieldEl = document.querySelector('#category_name')
 const saveBtn = document.querySelector('#save-btn')
 const saveMoreBtn = document.querySelector('#saveAndMore-btn')
-const AddForm = document.querySelector('#addForm')
+const addForm = document.querySelector('#addForm')
 
 async function renderPage(url) {
 
@@ -50,13 +50,13 @@ async function sendData(data, url, anotherURL, csrfToken) {
 
 saveMoreBtn.addEventListener('click', async (e) => {
     e.preventDefault()
-    const value = levelNameFieldEl.value;
+    const value = categoryFieldEl.value;
     if (value !== '') {
 
-        let serializeForm  = new FormData(AddForm);
+        let serializeForm  = new FormData(addForm);
         const data = new URLSearchParams(serializeForm);
-        const url = AddForm.getAttribute('data-action-url');
-        const csrfToken = AddForm.getAttribute('data-csrf-token');
+        const url = addForm.getAttribute('data-action-url');
+        const csrfToken = addForm.getAttribute('data-csrf-token');
         await sendData(data , url, url, csrfToken);
     }
 
@@ -65,11 +65,11 @@ saveMoreBtn.addEventListener('click', async (e) => {
 
 saveBtn.addEventListener('click', async (e) => {
     e.preventDefault()
-    let serializeForm  = new FormData(AddForm);
+    let serializeForm  = new FormData(addForm);
     const data = new URLSearchParams(serializeForm);
-    const url = AddForm.getAttribute('data-action-url');
-    const url2 = AddForm.getAttribute('data-action-url2');
-    const csrfToken = AddForm.getAttribute('data-csrf-token');
+    const url = addForm.getAttribute('data-action-url');
+    const url2 = addForm.getAttribute('data-action-url2');
+    const csrfToken = addForm.getAttribute('data-csrf-token');
     await sendData(data , url, url2, csrfToken);
 })
 

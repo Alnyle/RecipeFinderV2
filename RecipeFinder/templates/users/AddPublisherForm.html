@@ -10,7 +10,7 @@
     <title>Django Project</title>
     <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'users/style/profile.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'users/style/addLevelForm.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'users/style/AddPublisherForm.css' %}?{% now 'U' %}">
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -116,7 +116,7 @@
                             <a href="{% url 'users:AddCategory_view' %}">
                                 Add Category
                             </a>                   
-                            <a href="{% url 'users:EditCategory_view' %}">
+                            <a href="{% url 'users:EditLevel_view' %}">
                                 Edit Category
                             </a>
                         </div>
@@ -124,10 +124,10 @@
                     <li class="sub-select-container-3">
                         <p class="sub-select-paragraph-3">Publisher</p>
                         <div class="sub-select-category-3">
-                            <a href="{% url 'users:AddCategory_view' %}">
+                            <a href="{% url 'users:addPublisher_view' %}">
                                 Add Publisher
                             </a>                   
-                            <a href="{% url 'users:EditLevel_view' %}">
+                            <a href="{% url 'users:EditPublisher_view' %}">
                                 Edit Publisher
                             </a>
                         </div>
@@ -182,13 +182,23 @@
 </div>
 
 <div class="form-wrapper">
-    <h2 class="add-level-title">Add Level</h2>
-    <form id="addForm" method="POST" action="{% url 'users:addLevel_view' %}"
-          data-action-url="{% url 'users:addLevel_view' %}" data-csrf-token="{{ csrf_token }}" data-action-url2="{% url 'users:profile' %}">
+    <h2 class="title">Add Publisher</h2>
+    <form id="addForm" method="POST" action="{% url 'users:addPublisher_view' %}"
+          data-action-url="{% url 'users:addPublisher_view' %}" data-csrf-token="{{ csrf_token }}" data-action-url2="{% url 'users:EditPublisher_view' %}">
         {% csrf_token %}
         <div class="form-field">
-            <label for="Level_name">Level</label>
-            <input required type="text" name="level_name" placeholder="Enter Level" id="level_name">
+            <label for="name">Name</label>
+            <input required type="text" name="name" placeholder="Enter Publisher" id="publisher_name">
+            <small></small>
+        </div>       
+        <div class="form-field">
+            <label for="job_title">Job Title</label>
+            <input required type="text" name="job_title" placeholder="Enter Category name" id="publisher_job_title">
+            <small></small>
+        </div>     
+        <div class="form-field">
+            <label for="bio">Bio</label>
+            <textarea name="bio" placeholder="Enter a bio about publisher" id="bio"></textarea>
             <small></small>
         </div>
         <div class="btns">
@@ -202,7 +212,7 @@
 
 <script src="{% static 'recipes/js/global2.js' %}?{% now 'U' %}"></script>
 <script src="{% static 'users/js/profile.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'users/js/AddLevelForm.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'users/js/AddPublisherForm.js' %}?{% now 'U' %}"></script>
 {#<script src="{% static 'users/js/addLevelForm.js' %}?{% now 'U' %}"></script>#}
 </body>
 </html>

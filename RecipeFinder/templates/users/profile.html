@@ -109,6 +109,28 @@
                             </a>
                         </div>
                     </li>
+                    <li class="sub-select-container-2">
+                        <p class="sub-select-paragraph-2">Category</p>
+                        <div class="sub-select-category-2">
+                            <a href="{% url 'users:AddCategory_view' %}">
+                                Add Category
+                            </a>                   
+                            <a href="{% url 'users:EditCategory_view' %}">
+                                Edit Category
+                            </a>
+                        </div>
+                    </li>                
+                    <li class="sub-select-container-3">
+                        <p class="sub-select-paragraph-3">Publisher</p>
+                        <div class="sub-select-category-3">
+                            <a href="{% url 'users:addPublisher_view' %}">
+                                Add Publisher
+                            </a>                   
+                            <a href="{% url 'users:EditPublisher_view' %}">
+                                Edit Publisher
+                            </a>
+                        </div>
+                    </li>
 
                     {#                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>#}
                 </ul>

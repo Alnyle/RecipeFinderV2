@@ -139,6 +139,7 @@ def addRecipe(request):
         duration = form.get('recipe_duration')
         steps = form.get('recipe_steps')
 
+        # check is image is not empty
         if recipeImage is None:
             default_Image = 'defaultImage'
             uploaded_file_url = default_Image

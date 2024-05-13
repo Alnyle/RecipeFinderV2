@@ -110,6 +110,28 @@
                             </a>
                         </div>
                     </li>
+                    <li class="sub-select-container-2">
+                        <p class="sub-select-paragraph-2">Category</p>
+                        <div class="sub-select-category-2">
+                            <a href="{% url 'users:AddCategory_view' %}">
+                                Add Category
+                            </a>                   
+                            <a href="{% url 'users:EditCategory_view' %}">
+                                Edit Category
+                            </a>
+                        </div>
+                    </li>                
+                    <li class="sub-select-container-3">
+                        <p class="sub-select-paragraph-3">Publisher</p>
+                        <div class="sub-select-category-3">
+                            <a href="{% url 'users:addPublisher_view' %}">
+                                Add Publisher
+                            </a>                   
+                            <a href="{% url 'users:EditPublisher_view' %}">
+                                Edit Publisher
+                            </a>
+                        </div>
+                    </li>
 
                     <li><a href="{% url 'users:logout_view' %}">Logout</a></li>
                 </ul>
@@ -176,21 +198,22 @@
 
     {% for level in levels %}
         <div class="level">
-            <p class="level-name">{{ level.name }}</p>
+            <p class="item-name">{{ level.name }}</p>
 
             <div class="EditBtns">
-              <form class="edit_level_form  btn" method="POST">
-                      
-{#                    {% csrf_token %}#}
-                    <button class="edit_level_btn " type="button">
+                <form class="edit_level_form  btn" method="GET" action="{% url 'users:EditLevelForm_view' %}">
+                    {% csrf_token %}
+                    <input name="origin_name" value="{{ level.name }}" style="display:none;">
+                    <input name="new_name" value="{{ level.name }}" style="display:none;">
+                    <button class="edit_level_btn btn">
                         <i class="fa-solid fa-edit"></i>
                     </button>
                 </form>
-            <form class="delete_level_form" data-action-url2="{{ level.name }}"
+                <form class="delete_level_form"
                     method="POST" data-csrf-token="{{ csrf_token }}" 
                     data-action-url="{% url 'users:deleteLevel_view' %}">
                       <input name="level_name" type="text" value="{{ level.name }}">
-{#                    {% csrf_token %}#}
+                
                     <button class="delete_level_btn btn" type="button">
                         <i class="fa-solid fa-trash"></i>
                     </button>

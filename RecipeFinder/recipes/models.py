@@ -17,6 +17,9 @@ class Publisher(models.Model):
     def __str__(self):
         return self.name
 
+    def UpdatePubInfo(self):
+        self.save()
+
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
@@ -29,12 +32,18 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def updateCategory(self):
+        self.save()
+
 
 class Level(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return f"level: {self.name}"
+
+    def updateLevel(self):
+        self.save()
 
 
 class Ingredient(models.Model):

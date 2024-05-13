@@ -1,9 +1,19 @@
-
-
-const levelNameFieldEl = document.querySelector('#level_name')
+const categoryFieldEl = document.querySelector('#level_name')
 const saveBtn = document.querySelector('#save-btn')
 const saveMoreBtn = document.querySelector('#saveAndMore-btn')
-const AddForm = document.querySelector('#addForm')
+const addForm = document.querySelector('#addForm')
+
+
+// function isFormValid() {
+//     const value = categoryFieldEl.value.trim();
+//     let isValid = true;
+//     if (!isRequired(name)) {
+//         showError(categoryFieldEl, "Category Name can not be blank");
+//         isValid = false;
+//     }
+//     return isValid;
+// }
+
 
 async function renderPage(url) {
 
@@ -12,8 +22,7 @@ async function renderPage(url) {
         if (response.ok) {
             window.location = response.url;
         }
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Can not render the:", error);
     }
 }
@@ -36,8 +45,7 @@ async function sendData(data, url, anotherURL, csrfToken) {
             const responseJson = await response.json()
             const message = responseJson.message
             showError(levelNameFieldEl, message);
-        }
-        else {
+        } else {
             console.log("bad request");
         }
     } catch (error) {
@@ -47,31 +55,18 @@ async function sendData(data, url, anotherURL, csrfToken) {
 }
 
 
-
-saveMoreBtn.addEventListener('click', async (e) => {
-    e.preventDefault()
-    const value = levelNameFieldEl.value;
-    if (value !== '') {
-
-        let serializeForm  = new FormData(AddForm);
-        const data = new URLSearchParams(serializeForm);
-        const url = AddForm.getAttribute('data-action-url');
-        const csrfToken = AddForm.getAttribute('data-csrf-token');
-        await sendData(data , url, url, csrfToken);
-    }
-
-})
-
-
 saveBtn.addEventListener('click', async (e) => {
     e.preventDefault()
-    let serializeForm  = new FormData(AddForm);
+    let serializeForm = new FormData(addForm);
     const data = new URLSearchParams(serializeForm);
-    const url = AddForm.getAttribute('data-action-url');
-    const url2 = AddForm.getAttribute('data-action-url2');
-    const csrfToken = AddForm.getAttribute('data-csrf-token');
-    await sendData(data , url, url2, csrfToken);
+    const url = addForm.getAttribute('data-action-url');
+    const url2 = addForm.getAttribute('data-action-url2');
+    const csrfToken = addForm.getAttribute('data-csrf-token');
+    await sendData(data, url, url2, csrfToken);
+
 })
+
+const isRequired = value => value !== '';
 
 const showError = (input, message) => {
 
@@ -83,3 +78,6 @@ const showError = (input, message) => {
     const error = formField.querySelector('small');
     error.textContent = message;
 };
+
+
+

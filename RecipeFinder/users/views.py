@@ -222,3 +222,142 @@ def deleteLevel_view(request):
             return HttpResponse(status=404)
     else:
         return HttpResponse(status=405)
+
+
+def AddCategory_view(request):
+    if request.method == 'POST':
+        category_name = request.POST.get('category_name')
+
+        # check if the level name already exist
+        if Category.objects.filter(name=category_name).exists():
+            message = 'Category name already exists'
+            return JsonResponse({'message': 'this category name already exists'}, status=400)
+
+        category = Category.objects.create(name=category_name)
+        return HttpResponse(status=204)
+    else:
+        return render(request, "users/AddCategoryForm.html")
+
+
+# def EditCategory_view(request):
+#     Categories = Category.objects.all()
+#     return render(request, "users/EditCategory.html", {
+#         'Categories': Categories,
+#     })
+#
+def EditLevelForm_view(request):
+    if request.method == 'POST':
+        form = request.POST
+        origin_name = form.get('origin_name')
+        new_name = form.get('new_name')
+
+        level = Level.objects.get(name=origin_name)
+        level.name = new_name
+        level.updateLevel()
+        return JsonResponse({'message': 'Level name has been updated'}, status=200)
+
+    else:
+        level_name = request.GET.get('origin_name')
+        level = Level.objects.get(name=level_name)
+        return render(request, 'users/EditLevelForm.html', {
+            'level': level
+        })
+
+
+def EditCategory_view(request):
+    Categories = Category.objects.all()
+    return render(request, "users/EditCategory.html", {
+        'Categories': Categories,
+    })
+
+
+def deleteCategory_view(request):
+    if request.method == 'POST':
+        category_name = request.POST.get('category_name')
+        try:
+            category = Category.objects.get(name=category_name)
+            category.delete()
+            return HttpResponse(status=204)
+        except:
+            return HttpResponse(status=404)
+    else:
+        return HttpResponse(status=405)
+
+
+def EditCategoryForm_view(request, category_id):
+    if request.method == 'POST':
+        form = request.POST
+        category_name = form.get('category_name')
+        category = Category.objects.get(pk=category_id)
+
+        category.name = category_name
+        category.save()
+
+        return JsonResponse({'message': 'Category name has been updated'}, status=200)
+    else:
+        category = Category.objects.get(pk=category_id)
+        return render(request, "users/EditCategoryForm.html", {
+            'category': category,
+        })
+
+
+def addPublisher_view(request):
+    if request.method == 'POST':
+        form = request.POST
+        name = form.get('name')
+        job_title = form.get("job_title")
+        bio = form.get("bio")
+
+        publisher = Publisher.objects.create(
+            name=name,
+            jobTitle=job_title,
+            Bio=bio,
+        )
+        return HttpResponse(status=204)
+    else:
+        return render(request, "users/AddPublisherForm.html")
+
+
+def EditPublisher_view(request):
+    Publishers = Publisher.objects.all()
+    return render(request, 'users/EditPublisher.html', {
+        'Publishers': Publishers,
+    })
+
+
+def deletePublisher_view(request):
+    if request.method == 'POST':
+        pub_id = request.POST.get('publisher_id')
+        try:
+            publisher = Publisher.objects.get(pk=pub_id)
+            publisher.delete()
+            return HttpResponse(status=204)
+        except:
+            return HttpResponse(status=404)
+    else:
+        return HttpResponse(status=405)
+
+
+def EditPublisherDetails_view(request, pub_id):
+    # 1 - get the publisher using id
+    publisher = get_object_or_404(Publisher, pk=pub_id)
+
+    # if the request method was POST then get data form the info
+    if request.method == 'POST':
+        form = request.POST
+        name = form.get('name')
+        jobTitle = form.get('job_title')
+        Bio = form.get('bio')
+
+        publisher.name = name
+        publisher.jobTitle = jobTitle
+        publisher.Bio = Bio
+
+        publisher.UpdatePubInfo()
+
+        return redirect('users:EditPublisher_view')
+
+    else:
+        return render(request, 'users/EditPublisherForm.html', {
+            'publisher': publisher,
+        })
