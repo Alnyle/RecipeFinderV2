@@ -185,3 +185,9 @@ def addRecipe(request):
     return HttpResponse(status=302)  # find better status code
 
 
+def searchRecipe(request):
+    if request.method == 'GET':
+        form = request.POST
+        query = form.get('query')
+        recipes = Recipe.objects.filter(name=query)
+        # recipes += Recipe.objects.filter(ingredient=query)
