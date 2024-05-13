@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link rel="stylesheet" href="{% static 'users/style/register.css' %}">
+    <link rel="stylesheet" href="{% static 'users/style/register.css' %}?{% now 'U' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,8 @@
 
     <div class="container">
         <h3 class="login-title">SignUp</h3>
-        <form id="signUp" method="POST" action="{% url 'users:register' %}">
+        <form id="signUp" method="POST" action="{% url 'users:register' %}"
+                data-action-url="{% url 'users:register' %}" data-csrf-token="{{ csrf_token }}" data-action-url2="{% url 'index' %}">
             {% csrf_token %}
             <div class="form-field" id="email-filed">
                 <label for="Email">Email Address</label>
@@ -62,7 +63,7 @@
                 <p id="No-Account">Already have Account? <a href="{% url 'users:login_view' %}">Sign In!</a></p>
             </div>
         </form>
-    <script src="{% static 'users/js/signUp.js' %}"></script>
+    <script src="{% static 'users/js/signUp.js' %}?{% now 'U' %}"></script>
     </div>
 </body>
 </html>

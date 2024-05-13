@@ -131,20 +131,66 @@ const showSuccess = (input) => {
 }
 
 
-form.addEventListener('submit', (e) => {
+// it's route user to another page
+async function renderPage(url) {
+
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            window.location = response.url;
+        }
+    } catch (error) {
+        console.error("Can not render the:", error);
+    }
+}
+
+async function sendData(data, url, anotherURL, csrfToken) {
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrfToken,
+            },
+            body: data,
+        });
+
+        if (response.ok) {
+            console.log("good request");
+            await renderPage(anotherURL)
+        } else if (response.status >= 400 || response.status < 500) {
+            const responseJson = await response.json()
+            const message = responseJson.message
+            showError(passwordElement, message);
+        } else {
+            console.log("bad request");
+        }
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
+
+form.addEventListener('submit', async (e) => {
 
     e.preventDefault();
 
     let isUsernameValid = checkFirstName(),
-    isPasswordValid = checkPassword(),
-    isConfirmPasswordValid = checkConfirmPassword(),
-    isEmailValid = checkEmail();
+        isPasswordValid = checkPassword(),
+        isConfirmPasswordValid = checkConfirmPassword(),
+        isEmailValid = checkEmail();
 
     let isFormValid = isUsernameValid && isPasswordValid
-    && isConfirmPasswordValid && isEmailValid;
+        && isConfirmPasswordValid && isEmailValid;
 
     if (isFormValid) {
-        form.submit();
+        let serializeForm = new FormData(form);
+        const data = new URLSearchParams(serializeForm);
+        const url = form.getAttribute('data-action-url');
+        const url2 = form.getAttribute('data-action-url2');
+        const csrfToken = form.getAttribute('data-csrf-token');
+        await sendData(data, url, url2, csrfToken);
     }
 
 })

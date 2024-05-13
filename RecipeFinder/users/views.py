@@ -24,12 +24,9 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(reverse('index'))
+            return JsonResponse({'message': 'User has been authenticate successfully'}, status=200)
         else:
-            print("invalid Email")
-            return render(request, "users/login.html", {
-                'message': "invalid username or password"
-            })
+            return JsonResponse({'message': 'Password or username is incorrect'}, status=404)
     return render(request, "users/login.html")
 
 
@@ -68,12 +65,10 @@ def sign_up(request):
                 user.is_staff = True
                 user.is_superuser = True
             user.save()
-            return redirect(reverse('index'))
+            return JsonResponse({'message': 'User Created'}, status=200)
         else:
             data = {'error': error, 'value': value}
-            return render(request, "users/register.html", {
-                'data': data
-            })
+            return JsonResponse(data, status=403)
 
     return render(request, "users/register.html")
 
@@ -86,7 +81,7 @@ def logout_view(request):
 def profile(request):
     Categories = Category.objects.all()
     if not request.user.is_authenticated:
-        return render(request, reverse("login_view"))
+        return redirect(reverse('users:login_view'))
     return render(request, "users/profile.html", {
         'Categories': Categories,
     })

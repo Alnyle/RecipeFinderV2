@@ -184,7 +184,7 @@
 <div class="form-wrapper">
     <h2 class="add-level-title">Add Level</h2>
     <form id="addForm" method="POST" action="{% url 'users:addLevel_view' %}"
-          data-action-url="{% url 'users:addLevel_view' %}" data-csrf-token="{{ csrf_token }}" data-action-url2="{% url 'users:profile' %}">
+          data-action-url="{% url 'users:addLevel_view' %}" data-csrf-token="{{ csrf_token }}" data-action-url2="{% url 'users:EditLevel_view' %}">
         {% csrf_token %}
         <div class="form-field">
             <label for="Level_name">Level</label>

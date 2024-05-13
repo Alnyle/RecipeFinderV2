@@ -17,7 +17,8 @@
 
     <div class="container">
         <h3 class="login-title">Login</h3>
-        <form id="login" method="POST" action="{% url 'users:login_view' %}">
+        <form id="login" method="POST" action="{% url 'users:login_view' %}"
+        data-action-url="{% url 'users:login_view' %}" data-csrf-token="{{ csrf_token }}" data-action-url2="{% url 'index' %}">
             {% csrf_token %}
             <div class="form-field">
                 <label for="username">Username</label>
