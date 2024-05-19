@@ -1,5 +1,6 @@
 {% load static %}
 {% load bookmark_filter %}
+{% load divisibleby %}
 
 
 <!DOCTYPE html>
@@ -8,14 +9,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Django Project</title>
-    <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'users/style/profile.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'users/style/EditRecipe.css' %}?{% now "U" %}"/>
+    <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %} ">
+    <link rel="stylesheet" href="{% static 'recipes/style/favorite.css' %}?{% now "U" %}"/>
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<!-- Header -->
 <!-- Header -->
 <header>
     <div class="left-side hide-mobile">
@@ -53,7 +52,7 @@
 
 
         <form id="searchForm" class="search-field" method="GET" action="{% url 'searchRecipe' %}"
-              data-action-url="{% url 'searchRecipe' %}" data-csrf-token="{{ csrf_token }}">
+            data-action-url="{% url 'searchRecipe' %}" data-csrf-token="{{ csrf_token }}">
             <input type="search" name="query" class="input-field" placeholder="search"/>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
@@ -62,7 +61,6 @@
                       stroke-linejoin="round"/>
             </svg>
         </form>
-
 
         <a href="#" class="menu">
             <svg
@@ -93,60 +91,18 @@
     </div>
 </header>
 
-<div class="sub-header">
-    <div class="wrapper">
-        <nav class="sub-header-nav">
-            <ul class="subheader-list">
-                <li><a href="{% url 'users:addRecipePage' %}">Add recipe</a></li>
-                <li><a href="{% url 'users:editRecipePage' %}">Edit recipe</a></li>
-                <li class="sub-select-container">
-                    <p class="sub-select-paragraph">Level</p>
-                    <div class="sub-select-category">
-                        <a href="{% url 'users:addLevel_view' %}">
-                            Add Level
-                        </a>
-                        <a href="{% url 'users:EditLevel_view' %}">
-                            Edit Level
-                        </a>
-                    </div>
-                </li>
-                <li class="sub-select-container-2">
-                    <p class="sub-select-paragraph-2">Category</p>
-                    <div class="sub-select-category-2">
-                        <a href="{% url 'users:AddCategory_view' %}">
-                            Add Category
-                        </a>
-                        <a href="{% url 'users:EditCategory_view' %}">
-                            Edit Category
-                        </a>
-                    </div>
-                </li>
-                <li class="sub-select-container-3">
-                    <p class="sub-select-paragraph-3">Publisher</p>
-                    <div class="sub-select-category-3">
-                        <a href="{% url 'users:addPublisher_view' %}">
-                            Add Publisher
-                        </a>
-                        <a href="{% url 'users:EditPublisher_view' %}">
-                            Edit Publisher
-                        </a>
-                    </div>
-                </li>
-
-                {#                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>#}
-            </ul>
-        </nav>
-    </div>
-</div>
-
 <aside>
-    <img src="{% static 'assets/mobile-exit.svg' %}" alt="Exit mobile nav" class="exit hide-tablet"/>
+    <img
+            src="{% static 'assets/mobile-exit.svg' %}"
+            alt="Exit mobile nav"
+            class="exit hide-tablet"
+    />
     <nav>
         <ul>
-            <li class="active">
+            <li>
                 <a href="{% url 'index' %}">Home</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{% url 'favorite' %}">My Saved Recipes</a>
             </li>
             <li class="subCategories">
@@ -173,91 +129,76 @@
     </nav>
 </aside>
 
+
+{# Recipe #}
+
 <div class="my-recipes">
     <div class="recipes-wrapper">
         <div class="recipes-head">
-
+    
             <div class="links">
-                <p>Edit recipes</p>
+                <p>All recipes</p>
             </div>
         </div>
-
-
+    
+    
         <div class="carts-container">
             <div class="rows">
                 {% for recipe in recipes %}
-                    <div class="cart">
-                        <div class="cart-top">
-                            {% if recipe.image_link == 'defaultImage' %}
-                                <img src="{% static 'Assets/defaultImage.png' %}" alt="Default Image">
-                            {% else %}
-                                <img src="{{ recipe.image_link }}" alt="{{ recipe.name }} Image">
-                            {% endif %}
+                    
+                        <div class="cart">
+                            <div class="cart-top">
+                                {% if recipe.image_link == 'defaultImage' %}
+                                    <img src="{% static 'Assets/defaultImage.png' %}" alt="Default Image">
+                                {% else %}
+                                    <img src="{{ recipe.image_link }}" alt="{{ recipe.name }} Image">
+                                {% endif %}
+                                 <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
+                                      action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
+                                    {% csrf_token %}
+                                    <div>
+                                        {% if request.user.is_authenticated %}
 
-                            <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
-                                  action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
-                                {% csrf_token %}
-                                <div>
-                                    {% if request.user.is_authenticated %}
-
-                                        {% if request.user|check_bookmark:recipe.id %}
-                                            <i class="fa-solid marked favorite-icon fa-heart"
-                                               id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
+                                            {% if request.user|check_bookmark:recipe.id %}
+                                                <i class="fa-solid marked favorite-icon fa-heart"
+                                                   id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
+                                            {% else %}
+                                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                                   recipeID="{{ recipe.id }}"></i>
+                                            {% endif %}
                                         {% else %}
                                             <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
                                                recipeID="{{ recipe.id }}"></i>
+                                            <!-- Recipe is bookmarked by the current user -->
                                         {% endif %}
-                                    {% else %}
-                                        <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
-                                           recipeID="{{ recipe.id }}"></i>
-                                        <!-- Recipe is bookmarked by the current user -->
-                                    {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="cart-bottom">
+                                <div class="rec-details">
+                                    <p class="rec-level ">{{ recipe.Level }}</p>
+                                    <h3 class="rec-name"><a style="color:black"
+                                                            href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
+                                    </h3>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="cart-bottom">
-                            <div class="rec-details">
-                                <p class="rec-level ">{{ recipe.Level }}</p>
-                                <h3 class="rec-name"><a style="color:black"
-                                                        href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
-                                </h3>
-                            </div>
-                            <div class="addition-details">
-                                <p>{{ recipe.duration }} mins</p>
+                                <div class="addition-details">
+                                    <p>{{ recipe.duration }} mins</p>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="EditBtns">
-
-                            {#                                href="{% url '' %}"#}
-                            <a class="Edit_recipe_btn btn"
-                               href="{% url 'users:editRecipeDetails' recipe_id=recipe.id %}">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <p>Edit Recipe</p>
-                            </a>
-
-                            <form class="deleteRecipe_form  btn" method="POST"
-                                  action="{% url 'users:deleteRecipe' recipe_id=recipe.id %}">
-                                {% csrf_token %}
-                                <button class="delete_recipe_btn ">
-                                    <i class="fa-solid fa-trash"></i>
-                                    <p>Delete Recipe</p>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+          
                     {% if forloop.counter|divisibleby:4 and not forloop.last %}
-                        </div>
-                        <div class="rows">
+                       </div><div class="rows">
                     {% endif %}
-                    {% empty %}
+                {% empty %}
                     <h1>Empty</h1>
                 {% endfor %}
-                </div>
+            </div>
         </div>
     </div>
 
 </div>
+
 
 <!-- Footer -->
 <footer>
@@ -302,8 +243,6 @@
     </div>
 </footer>
 
-<script src="{% static 'recipes/js/global.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'users/js/deleteRecipe.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'users/js/profile.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'recipes/js/global2.js' %}?{% now 'U' %}"></script>
 </body>
 </html>

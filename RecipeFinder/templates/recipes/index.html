@@ -345,7 +345,9 @@
             <div class="links">
                 <p>Popular Recipes</p>
                 <button class="btn see-more">
-                    <a>See more</a>
+                    <a href="{% url 'allRecipe' %}">
+                        See more
+                    </a>
                     {#                    <i class="fa-solid fa-arrow-right"></i>#}
                 </button>
             </div>
@@ -495,11 +497,10 @@
 
             <div class="links">
                 <p>Family Recipes</p>
-                <button class="btn see-more">
-                    <a>See more</a>
-{#                    <a href="{% url 'get_category' category_id='' %}">#}
-{#                          {{ category.name }}#}
-{#                    </a>#}
+                <button class="btn see-more" type="button">
+                    <a href="{% url 'get_category' category_id=family_category.id %}">
+                        See more
+                    </a>
                     {#                    <i class="fa-solid fa-arrow-right"></i>#}
                 </button>
             </div>

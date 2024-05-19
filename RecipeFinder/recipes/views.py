@@ -41,6 +41,7 @@ def index(request):
         'Categories': Categories,
         'last_recipes': last_recipes,
         'family_recipes': family_recipes,
+        'family_category': family_category,
     })
 
 
@@ -216,6 +217,32 @@ def searchRecipe(request):
             bookmarks = Bookmark.objects.filter(user=user).select_related("recipe")
 
     return render(request, 'recipes/SearchPage.html', {
+        'recipes': recipes,
+        'RecipeIngredients': RecipeIngredients,
+        'bookmarks': bookmarks,
+        'Categories': Categories,
+    })
+
+
+def allRecipe(request):
+    # get all recipes
+    recipes = Recipe.objects.all()
+    RecipeIngredients = RecipeIngredient.objects.all()
+    bookmarks = None
+    categories = None
+    family_recipes = None
+    Categories = Category.objects.all()
+
+    last_recipes = Recipe.objects.all().order_by('-date')
+    family_category = Category.objects.get(name='Family')
+    family_recipes = Recipe.objects.filter(category=family_category)
+
+    # if user authenticated and have saved recipe get them
+    if request.user.is_authenticated:
+        user = request.user
+        bookmarks = Bookmark.objects.filter(user=user).select_related("recipe")
+
+    return render(request, "recipes/AllRecipes.html", {
         'recipes': recipes,
         'RecipeIngredients': RecipeIngredients,
         'bookmarks': bookmarks,
