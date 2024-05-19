@@ -3,14 +3,11 @@ html {
 }
 
 
-
-
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-
 
 
 a {
@@ -32,7 +29,6 @@ img {
     aspect-ratio: 1/1;
     object-fit: cover;
 }
-
 
 
 /* main */
@@ -126,7 +122,7 @@ main .wrapper-top {
 #scroller {
     margin-top: 8rem;
     white-space: nowrap;
-    overflow-x:auto;
+    overflow-x: auto;
     overflow-y: hidden;
     position: relative;
     z-index: 10;
@@ -137,24 +133,24 @@ main .wrapper-top {
 }
 
 .scroller-in {
-  /*width: 100%;*/
-  display: inline-block;
-  white-space: nowrap;
-  animation-name: scroll;
-  animation-duration: 40s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+    /*width: 100%;*/
+    display: inline-block;
+    white-space: nowrap;
+    animation-name: scroll;
+    animation-duration: 40s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 #scroller .card {
-  display: inline-block;
-  width: 273px;
-  height: 340px;
-  font-family: 'Source Serif 4', serif;
-  margin-right: 20px;
-  transition: all linear 0.3s;
-  position: relative;
-  border-radius: 14px;
+    display: inline-block;
+    width: 273px;
+    height: 340px;
+    font-family: 'Source Serif 4', serif;
+    margin-right: 20px;
+    transition: all linear 0.3s;
+    position: relative;
+    border-radius: 14px;
 }
 
 /*#scroller .scroller-in-2 {*/
@@ -196,20 +192,19 @@ main .wrapper-top {
 }
 
 
-
 #scroller h4:hover {
-  color: #208C64;
-  -webkit-text-stroke: 2px #208C64;
+    color: #208C64;
+    -webkit-text-stroke: 2px #208C64;
 }
 
 
 @keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 @media only screen and (min-width: 1215px) {
@@ -264,7 +259,7 @@ main .wrapper-top {
 
 .recs-title {
     font-size: 3.2rem;
-    text-transform: capitalize; 
+    text-transform: capitalize;
 }
 
 
@@ -304,10 +299,9 @@ main .wrapper-top {
 }
 
 
-
 .carts-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit , 1fr);
+    grid-template-columns: repeat(auto-fit, 1fr);
     width: 100%;
     gap: 16px;
 }
@@ -374,7 +368,6 @@ main .wrapper-top {
 }
 
 
-
 .cart-bottom {
     display: flex;
     flex-direction: column;
@@ -393,8 +386,6 @@ main .wrapper-top {
     width: 100%;
     flex-basis: fit-content;
 }
-
-
 
 
 .cart-bottom .rec-details .rec-name {
@@ -416,15 +407,13 @@ main .wrapper-top {
 }
 
 
-
 /* Feature section */
-
 
 
 .feature .feature-wrapper {
     max-width: 1200px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
@@ -446,8 +435,7 @@ main .wrapper-top {
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-    height: 400px;
-    width: 400px;
+    width: 100%;
 }
 
 .feature-right img {
@@ -472,7 +460,7 @@ main .wrapper-top {
 
 .feature-left .info .details {
     font-size: 1.6rem;
-    line-height: 120%;
+    line-height: 150%;
     width: 100%;
 }
 
@@ -513,42 +501,55 @@ main .wrapper-top {
     gap: 4rem;
 }
 
-.recipes-rows .row-1,.recipes-rows .row-2{
+.recipes-rows .row-1, .recipes-rows .row-2 {
     width: 100%;
     padding: 0;
 }
 
 
-.recipes-rows .row-1 .recipes-head,.recipes-rows .row-2 .recipes-head {
+.recipes-rows .row-1 .recipes-head, .recipes-rows .row-2 .recipes-head {
     padding: 0;
 }
 
 
 .recipes-rows .row-1 .carts-container, .recipes-rows .row-2 .carts-container {
-    padding: 2rem  0 0 0;
+    padding: 2rem 0 0 0;
 }
 
 /* Media query */
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 400px) {
+
+    .feature .feature-wrapper {
+        flex-direction: row;
+    }
+
+    .feature-right {
+        height: 400px;
+        width: 400px;
+    }
+}
+
+@media only screen and (min-width: 400px) {
     .carts-container {
         flex-direction: row;
-        /*grid-template-columns: repeat(2, 1fr);*/
+        grid-template-columns: 1fr 1fr;
         /*grid-template-rows: repeat(2, 1fr);*/
     }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 600px) {
 
     .recipes {
         /*padding: 0 48px;*/
     }
+
     .carts-container {
         display: grid;
         width: 100%;
         /*grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));*/
         /*grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));*/
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: repeat(4,1fr);
         /*grid-template-rows: repeat(1, 1fr);*/
     }
 

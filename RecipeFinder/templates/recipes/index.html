@@ -51,7 +51,8 @@
     <div class="right-side">
 
 
-        <form class="search-field" method="GET" action="{% url 'searchRecipe' %}">
+        <form id="searchForm" class="search-field" method="GET" action="{% url 'searchRecipe' %}"
+            data-action-url="{% url 'searchRecipe' %}" data-csrf-token="{{ csrf_token }}">
             <input type="search" name="query" class="input-field" placeholder="search"/>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
@@ -89,6 +90,7 @@
         </div>
     </div>
 </header>
+
 
 <aside>
     <img
@@ -387,7 +389,7 @@
                                 <div class="rec-details">
                                     <p class="rec-level ">{{ recipe.Level }}</p>
                                     <h3 class="rec-name"><a style="color:black"
-                                                            href="{% url 'recipe_details' recipe.id %}">Spicy Thai Basil Chicken Stir-Fry</a>
+                                                            href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
                                     </h3>
                                 </div>
                                 <div class="addition-details">
@@ -401,7 +403,7 @@
                 {% endfor %}
             </div>              
             <div class="carts-container">
-                {% for recipe in recipes %}
+                {% for recipe in last_recipes reversed %}
                     {% if forloop.counter <= 4 %} {# Limiting to four iterations #}
                         <div class="cart">
                             <div class="cart-top">
@@ -492,9 +494,12 @@
         <div class="recipes-head">
 
             <div class="links">
-                <p>Popular Recipes</p>
+                <p>Family Recipes</p>
                 <button class="btn see-more">
                     <a>See more</a>
+{#                    <a href="{% url 'get_category' category_id='' %}">#}
+{#                          {{ category.name }}#}
+{#                    </a>#}
                     {#                    <i class="fa-solid fa-arrow-right"></i>#}
                 </button>
             </div>
@@ -502,7 +507,7 @@
 
         <div class="rows-recipes">
               <div class="carts-container">
-                {% for recipe in recipes %}
+                {% for recipe in family_recipes %}
                     {% if forloop.counter <= 4 %} {# Limiting to four iterations #}
                         <div class="cart">
                             <div class="cart-top">
@@ -537,7 +542,7 @@
                                 <div class="rec-details">
                                     <p class="rec-level ">{{ recipe.Level }}</p>
                                     <h3 class="rec-name"><a style="color:black"
-                                                            href="{% url 'recipe_details' recipe.id %}">Spicy Thai Basil Chicken Stir-Fry</a>
+                                                            href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
                                     </h3>
                                 </div>
                                 <div class="addition-details">
@@ -608,17 +613,17 @@
 <div class="feature">
     <div class="feature-wrapper">
         <div class="feature-right">
-            <img src="{% static 'Assets/f1.jpg' %}" alt="" >
+            <img src="{% static 'Assets/f2.jpg' %}" alt="" >
         </div>
         <div class="feature-left">
             <div class="info">
                 <h3 class="title">
-                    Unlock Culinary Creativity and Dive into a World of Flavor with foodie
+                    Exploring the Multifaceted World of Ingredients
                 </h3>
                 <p class="details">
-                    Whether you're in search of a comforting comfort food classic,
-                    a nutritious option for a health-conscious lifestyle, or a culinary
-                    adventure that pushes the boundaries of taste, we've got you covered.
+                   Step into a world of culinary exploration as we embark on a gastronomic journey,
+                   delving deep into the multifaceted realm of ingredients. Unveil the secrets of flavor, texture, 
+                   and global inspiration, crafting culinary creations that not only tantalize the taste buds but also nourish body and soul.
 
                 </p>
             </div>

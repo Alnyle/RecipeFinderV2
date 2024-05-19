@@ -5,10 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b314b6-94e9-4e3f-a16b-3bee92e9d947" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/recipes/static/Assets/f2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/static/recipes/js/SearchPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/recipes/SearchPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/js/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/js/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/js/global2.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/js/global2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/users/style/EditRecipe.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/users/style/EditRecipe.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipes/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/aboutUs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/aboutUs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/favorite.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/favorite.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/recipes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/recipeDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/recipeDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/AddCategoryForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddCategoryForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/AddLevelForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddLevelForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/AddPublisherForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddPublisherForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditCategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditCategoryForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditCategoryForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditLevel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditLevel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditLevelForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditLevelForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditPublisher.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditPublisher.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditPublisherForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditPublisherForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditRecipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditRecipe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/addRecipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/addRecipe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/editRecipeDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/editRecipeDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,9 +94,9 @@
       <recent name="E:\Project\RecipeFinder\RecipeFinder\Assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Project\RecipeFinder\recipes\static\Assets" />
       <recent name="E:\Project\RecipeFinder\templates\users" />
       <recent name="E:\Project\RecipeFinder\recipes\static\users\style" />
-      <recent name="E:\Project\RecipeFinder\recipes\static\Assets" />
       <recent name="E:\Project\RecipeFinder\recipes\static" />
       <recent name="E:\Project\RecipeFinder\recipes\static\recipes\style" />
     </key>
@@ -150,7 +176,8 @@
       <workItem from="1715274619105" duration="7620000" />
       <workItem from="1715414704476" duration="28979000" />
       <workItem from="1715515889692" duration="36705000" />
-      <workItem from="1715600796808" duration="33588000" />
+      <workItem from="1715600796808" duration="33824000" />
+      <workItem from="1716131653919" duration="19071000" />
     </task>
     <servers />
   </component>

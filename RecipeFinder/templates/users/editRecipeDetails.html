@@ -92,16 +92,51 @@
     </div>
 </header>
 
-<div class="sub-header">
-    <div class="wrapper">
-        <nav class="sub-header-nav">
-            <ul class="subheader-list">
-                <li><a href="{% url 'users:addRecipePage' %}">Add recipe</a></li>
-                <li><a href="{% url 'users:editRecipePage' %}" class="active">Edit recipe</a></li>
-            </ul>
-        </nav>
+    <div class="sub-header">
+        <div class="wrapper">
+            <nav class="sub-header-nav">
+                <ul class="subheader-list">
+                    <li><a href="{% url 'users:addRecipePage' %}">Add recipe</a></li>
+                    <li><a href="{% url 'users:editRecipePage' %}">Edit recipe</a></li>
+                    <li class="sub-select-container">
+                        <p class="sub-select-paragraph">Level</p>
+                        <div class="sub-select-category">
+                            <a href="{% url 'users:addLevel_view' %}">
+                                Add Level
+                            </a>                   
+                            <a href="{% url 'users:EditLevel_view' %}">
+                                Edit Level
+                            </a>
+                        </div>
+                    </li>
+                    <li class="sub-select-container-2">
+                        <p class="sub-select-paragraph-2">Category</p>
+                        <div class="sub-select-category-2">
+                            <a href="{% url 'users:AddCategory_view' %}">
+                                Add Category
+                            </a>                   
+                            <a href="{% url 'users:EditCategory_view' %}">
+                                Edit Category
+                            </a>
+                        </div>
+                    </li>                
+                    <li class="sub-select-container-3">
+                        <p class="sub-select-paragraph-3">Publisher</p>
+                        <div class="sub-select-category-3">
+                            <a href="{% url 'users:addPublisher_view' %}">
+                                Add Publisher
+                            </a>                   
+                            <a href="{% url 'users:EditPublisher_view' %}">
+                                Edit Publisher
+                            </a>
+                        </div>
+                    </li>
+
+                    {#                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>#}
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
 
 <aside>
     <img src="{% static 'assets/mobile-exit.svg' %}" alt="Exit mobile nav" class="exit hide-tablet"/>
@@ -302,6 +337,7 @@
 
 <script src="{% static 'recipes/js/global.js' %}?{% now 'U' %}"></script>
 <script src="{% static 'users/js/editRecipeDetails.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'users/js/editRecipeDetails.js' %}?{% now 'U' %}"></script>
+<script src="{% static 'users/js/profile.js' %}?{% now 'U' %}"></script>
+
 </body>
 </html>

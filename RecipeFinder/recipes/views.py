@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.urls import reverse
 from django import template
 from .models import Recipe, RecipeIngredient, Bookmark, Category, Ingredient, Publisher, Level
+from django.db.models import Q
 
 from users import views
 
@@ -21,7 +22,12 @@ def index(request):
     RecipeIngredients = RecipeIngredient.objects.all()
     bookmarks = None
     categories = None
+    family_recipes = None
     Categories = Category.objects.all()
+
+    last_recipes = Recipe.objects.all().order_by('-date')
+    family_category = Category.objects.get(name='Family')
+    family_recipes = Recipe.objects.filter(category=family_category)
 
     # if user authenticated and have saved recipe get them
     if request.user.is_authenticated:
@@ -33,6 +39,8 @@ def index(request):
         'RecipeIngredients': RecipeIngredients,
         'bookmarks': bookmarks,
         'Categories': Categories,
+        'last_recipes': last_recipes,
+        'family_recipes': family_recipes,
     })
 
 
@@ -186,8 +194,30 @@ def addRecipe(request):
 
 
 def searchRecipe(request):
+    recipes = None
+    bookmarks = None
+    Categories = None
+    RecipeIngredients = None
     if request.method == 'GET':
-        form = request.POST
+        form = request.GET
         query = form.get('query')
-        recipes = Recipe.objects.filter(name=query)
-        # recipes += Recipe.objects.filter(ingredient=query)
+        if query:
+
+            recipes = Recipe.objects.filter(Q(name__contains=query) | Q(description__contains=query))
+        else:
+            recipes = Recipe.objects.none()
+        print(query)
+        RecipeIngredients = RecipeIngredient.objects.all()
+        Categories = Category.objects.all()
+
+        # if user authenticated and have saved recipe get them
+        if request.user.is_authenticated:
+            user = request.user
+            bookmarks = Bookmark.objects.filter(user=user).select_related("recipe")
+
+    return render(request, 'recipes/SearchPage.html', {
+        'recipes': recipes,
+        'RecipeIngredients': RecipeIngredients,
+        'bookmarks': bookmarks,
+        'Categories': Categories,
+    })

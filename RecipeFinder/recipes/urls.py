@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:category_id>/Category', views.get_category, name="get_category"),
     path('addRecipe/', views.addRecipe, name='addRecipe'),
     path('searchRecipe/', views.searchRecipe, name='searchRecipe'),
+    path('search/', views.searchRecipe, name='searchRecipe'),
 ]

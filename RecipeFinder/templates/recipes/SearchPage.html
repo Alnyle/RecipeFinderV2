@@ -1,17 +1,20 @@
 {% load static %}
 {% load bookmark_filter %}
+{% load divisibleby %}
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>{{ recipe.name }}</title>
-    <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}">
-    <link rel="stylesheet" href="{% static 'recipes/style/RecipeDetails.css' %}"/>
+    <title>Django Project</title>
+    <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %} ">
+    <link rel="stylesheet" href="{% static 'recipes/style/favorite.css' %}?{% now "U" %}"/>
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <!-- Header -->
 <header>
     <div class="left-side hide-mobile">
@@ -96,11 +99,11 @@
     />
     <nav>
         <ul>
-            <li class="active">
+            <li>
                 <a href="{% url 'index' %}">Home</a>
             </li>
-            <li>
-                <a href="{% url 'favorite' %}">Favorite</a>
+            <li class="active">
+                <a href="{% url 'favorite' %}">My Saved Recipes</a>
             </li>
             <li class="subCategories">
                 <div class="select-paragraph-m">
@@ -126,73 +129,74 @@
     </nav>
 </aside>
 
-<!-- Main -->
 
-<!-- Main -->
+{# Recipe #}
 
-<!-- Main -->
-
-<main>
-    <div class="titles">
-        <div class="main-titles">
-            <div class="title">
-                <h2 class="rec-name">{{ recipe.name }}</h2>
-                <form method="POST" id="form-{{ recipe.id }}" action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
-                    {% csrf_token %}
-                    <div>
-                        {% if request.user.is_authenticated %}
-
-                            {% if request.user|check_bookmark:recipe.id %}
-                                <i class="fa-solid marked favorite-icon fa-heart"
-                                   id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
-                            {% else %}
-                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
-                                   recipeID="{{ recipe.id }}"></i>
-                            {% endif %}
-                        {% else %}
-                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
-                               recipeID="{{ recipe.id }}"></i>
-                            <!-- Recipe is bookmarked by the current user -->
-                        {% endif %}
-                    </div>
-                </form>
-            </div>
-            <div class="publish-info">
-                <p class="publisher-name">by {{ recipe.publisher.name }}</p>
-                <p class="publisher-date">{{ recipe.date }}</p>
+<div class="my-recipes">
+    <div class="my-recipes-wrapper">
+        <div class="recipes-head">
+    
+            <div class="links">
+                <p>Search Result</p>
             </div>
         </div>
-            {% if recipe.image_link == 'defaultImage' %}
-                <img src="{% static 'Assets/defaultImage.png' %}" style="max-height: 250px" alt="Default Image">
-            {% else %}
-                <img src="{{ recipe.image_link }}" style="max-height: 250px"   alt="{{ recipe.name }} Image">
-            {% endif %}
+    
+    
+        <div class="carts-container">
+            <div class="rows">
+                {% for recipe in recipes %}
+                    
+                        <div class="cart">
+                            <div class="cart-top">
+                                {% if recipe.image_link == 'defaultImage' %}
+                                    <img src="{% static 'Assets/defaultImage.png' %}" alt="Default Image">
+                                {% else %}
+                                    <img src="{{ recipe.image_link }}" alt="{{ recipe.name }} Image">
+                                {% endif %}
+                                 <form method="POST" id="form-{{ recipe.id }}" class="like-icon"
+                                      action="{% url 'add_to_favorites' recipe_id=recipe.id %}">
+                                    {% csrf_token %}
+                                    <div>
+                                        {% if request.user.is_authenticated %}
+
+                                            {% if request.user|check_bookmark:recipe.id %}
+                                                <i class="fa-solid marked favorite-icon fa-heart"
+                                                   id="icon-{{ recipe.id }}" recipeID="{{ recipe.id }}"></i>
+                                            {% else %}
+                                                <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                                   recipeID="{{ recipe.id }}"></i>
+                                            {% endif %}
+                                        {% else %}
+                                            <i class="fa-regular favorite-icon fa-heart" id="icon-{{ recipe.id }}"
+                                               recipeID="{{ recipe.id }}"></i>
+                                            <!-- Recipe is bookmarked by the current user -->
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="cart-bottom">
+                                <div class="rec-details">
+                                    <p class="rec-level ">{{ recipe.Level }}</p>
+                                    <h3 class="rec-name"><a style="color:black"
+                                                            href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a>
+                                    </h3>
+                                </div>
+                                <div class="addition-details">
+                                    <p>{{ recipe.duration }} mins</p>
+                                </div>
+                            </div>
+                        </div>
+          
+                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                       </div><div class="rows">
+                    {% endif %}
+                {% empty %}
+                    <h1>0 recipes</h1>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
-    <div class="rec-desc">
-        <p>{{ recipe.description }}</p>
-    </div>
-
-</main>
-
-<div class="rec-detail">
-    <div class="rec-ingredients">
-        <h4 class="subtitle">ingredients</h4>
-        <ol>
-            {% for ingredientInfo in ingredients %}
-                <li>
-                    <p>{{ ingredientInfo.ingredient.name }} - {{ ingredientInfo.quantity }}</p>
-                    <p>{{ ingredientInfo.description }}</p>
-                </li>
-            {% endfor %}
-        </ol>
-    </div>
-    <div class="rec-steps">
-        <h4 class="subtitle">Step</h4>
-        {% for step in steps %}
-            <p>{{ step }}</p>
-        {% endfor %}
-    </div>
 </div>
 
 
@@ -240,5 +244,6 @@
 </footer>
 
 <script src="{% static 'recipes/js/global2.js' %}?{% now 'U' %}"></script>
+{#<script src="{% static 'recipes/js/SearchPage.js' %}?{% now 'U' %}"></script>#}
 </body>
 </html>
