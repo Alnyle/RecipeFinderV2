@@ -5,8 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b314b6-94e9-4e3f-a16b-3bee92e9d947" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/recipes/static/users/js/EditPersonalInfo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/static/users/js/UpdatePassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipes/static/users/style/UpdatePassword.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/EditPersonalInfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/users/UpdatePassword.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/users/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/users/js/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/users/style/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/users/style/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/AddCategoryForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddCategoryForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/AddLevelForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddLevelForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/AddPublisherForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddPublisherForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditCategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditCategoryForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditCategoryForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditLevel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditLevel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditLevelForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditLevelForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditPublisher.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditPublisher.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditPublisherForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditPublisherForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/EditRecipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditRecipe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/addRecipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/addRecipe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/editRecipeDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/editRecipeDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +43,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -149,7 +172,9 @@
       <workItem from="1715414704476" duration="28979000" />
       <workItem from="1715515889692" duration="36705000" />
       <workItem from="1715600796808" duration="33824000" />
-      <workItem from="1716131653919" duration="21795000" />
+      <workItem from="1716131653919" duration="21943000" />
+      <workItem from="1716372922449" duration="20031000" />
+      <workItem from="1716403079943" duration="3909000" />
     </task>
     <servers />
   </component>

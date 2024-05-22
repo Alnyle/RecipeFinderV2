@@ -10,7 +10,7 @@
     <title>Django Project</title>
     <link rel="stylesheet" href="{% static 'recipes/style/header.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static 'users/style/profile.css' %}?{% now 'U' %}">
-    <link rel="stylesheet" href="{% static 'users/style/addLevelForm.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'users/style/login.css' %}?{% now 'U' %}">
     <script src="https://kit.fontawesome.com/3fee5cf858.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -62,6 +62,7 @@
                       stroke-linejoin="round"/>
             </svg>
         </form>
+
 
         <a href="#" class="menu">
             <svg
@@ -134,7 +135,7 @@
                         </div>
                     </li>
 
-                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>
+                    {#                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>#}
                 </ul>
             </nav>
         </div>
@@ -175,6 +176,7 @@
         </ul>
     </nav>
 
+{% if request.user.is_superuser %}
 
     <div class="sub-header-mobile ">
         <div class="wrapper-mobile">
@@ -221,36 +223,85 @@
             </nav>
         </div>
     </div>
-
+{% endif %}
 </aside>
+
 
 <!-- Main -->
 
-<div>
-    
-</div>
-<div class="form-wrapper">
-    <h2 class="title">Edit Level</h2>
-    <form id="addForm" method="POST" action="{% url 'users:EditLevelForm_view' %}"
-        data-action-url="{% url 'users:EditLevelForm_view' %}" data-csrf-token="{{ csrf_token }}" data-action-url2="{% url 'users:EditLevel_view' %}">
-        {% csrf_token %}
-        <div class="form-field">
-            <label for="category_name">Level</label>
-            <input required type="text" name="new_name" placeholder="Enter Level name" id="level_name"
-            value="{{ level.name }}">          
-            <input required type="text" name="origin_name" value="{{ level.name }}" style="display: none">
-            <small></small>
-        </div>
-        <div class="btns">
-            <input id="save-btn" type="submit" value="Save">
-        </div>
-    </form>
-</div>
+    <div class="container">
+        <h3 class="login-title">Update Personal Info</h3>
+        <form id="EditPersonalInfo" method="POST" action="{% url 'users:saveUpdatePersonalInfo_view' %}">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" placeholder="Enter your first name here" id="firstName" value="{{ user.first_name }}">
+                <small></small>
+            </div>
+            <div class="form-field">
+                <label for="username">Last Name</label>
+                <input type="text" name="lastName" placeholder="Enter your last name here" id="lastName" value="{{ user.last_name }}">
+                <small></small>
+            </div>
 
+            <div class="form-field">
+                <label for="Email">Email</label>
+                <input type="Email" name="email" placeholder="Email" id="email" value="{{ user.email }}">
+                <small></small>
+            </div>
 
+            <div class="btns">
+                <input id="submit-btn" type="submit" value="save changes">
+            </div>
+            
+        </form>
+
+    </div>
+<!-- Footer -->
+<footer>
+    <div class="top">
+        <div class="col">
+            <div class="logo">
+                <h1>
+                    <a href="{% url 'index' %}">Foo<span>dies</span></a>
+                </h1>
+                <p>Best make you can recipy for your daily life for more </p>
+            </div>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">main course</a></li>
+                    <li><a href="#">dessert</a></li>
+                    <li><a href="#">appetizers</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">Best Meals</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Article</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col">
+            <nav>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact US</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="bottom">
+        <p>Copyright 2024 - Foodies</p>
+    </div>
+</footer>
+  <script src="{% static 'users/js/EditPersonalInfo.js' %}?{% now 'U' %}"></script>
 <script src="{% static 'recipes/js/global2.js' %}?{% now 'U' %}"></script>
 <script src="{% static 'users/js/profile.js' %}?{% now 'U' %}"></script>
-<script src="{% static 'users/js/EditLevelForm.js' %}?{% now 'U' %}"></script>
-{#<script src="{% static 'users/js/addLevelForm.js' %}?{% now 'U' %}"></script>#}
 </body>
-</html>
+
+  

@@ -9,6 +9,7 @@ urlpatterns = [
     path('resgister/', views.sign_up, name='register'),
     path('logout/', views.logout_view, name='logout_view'),
     path('profile/', views.profile, name='profile'),
+    path('updatePassword_view/', views.updatePassword_view, name='updatePassword_view'),
     path('addRecipe/', views.addRecipePage, name='addRecipePage'),
     path('EditRecipe/', views.editRecipePage, name='editRecipePage'),
     path('deleteRecipe/<int:recipe_id>', views.deleteRecipe, name='deleteRecipe'),
@@ -25,4 +26,8 @@ urlpatterns = [
     path('EditPublisher/', views.EditPublisher_view, name='EditPublisher_view'),
     path('deletePublisher/', views.deletePublisher_view, name='deletePublisher_view'),
     path('EditPublisherDetails/<int:pub_id>', views.EditPublisherDetails_view, name='EditPublisherDetails_view'),
+    path('EditPublisherDetails/<int:pub_id>', views.EditPublisherDetails_view, name='EditPublisherDetails_view'),
+    path('EditPersonalInfo/<int:user_id>', views.EditPersonalInfo_view, name='EditPersonalInfo_view'),
+    path('saveUpdatePersonalInfo_view/', views.saveUpdatePersonalInfo_view, name='saveUpdatePersonalInfo_view'),
+
 ]

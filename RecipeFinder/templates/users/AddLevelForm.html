@@ -95,7 +95,7 @@
 
 {% if request.user.is_superuser %}
 
-    <div class="sub-header">
+    <div class="sub-header hide-mobile">
         <div class="wrapper">
             <nav class="sub-header-nav">
                 <ul class="subheader-list">
@@ -175,6 +175,55 @@
             </li>
         </ul>
     </nav>
+
+{% if request.user.is_superuser %}
+
+    <div class="sub-header-mobile ">
+        <div class="wrapper-mobile">
+            <nav class="sub-header-nav-mobile">
+                <ul class="subheader-list-mobile">
+                    <li><a href="{% url 'users:addRecipePage' %}">Add recipe</a></li>
+                    <li><a href="{% url 'users:editRecipePage' %}">Edit recipe</a></li>
+                    <li class="sub-select-container-mobile">
+                        <p class="sub-select-paragraph-mobile">Level</p>
+                        <div class="sub-select-category-mobile">
+                            <a href="{% url 'users:addLevel_view' %}">
+                                Add Level
+                            </a>                   
+                            <a href="{% url 'users:EditLevel_view' %}">
+                                Edit Level
+                            </a>
+                        </div>
+                    </li>
+                    <li class="sub-select-container-mobile-2">
+                        <p class="sub-select-paragraph-mobile-2">Category</p>
+                        <div class="sub-select-category-mobile-2">
+                            <a href="{% url 'users:AddCategory_view' %}">
+                                Add Category
+                            </a>                   
+                            <a href="{% url 'users:EditCategory_view' %}">
+                                Edit Category
+                            </a>
+                        </div>
+                    </li>                
+                    <li class="sub-select-container-mobile-3">
+                        <p class="sub-select-paragraph-mobile-3">Publisher</p>
+                        <div class="sub-select-category-mobile-3">
+                            <a href="{% url 'users:addPublisher_view' %}">
+                                Add Publisher
+                            </a>                   
+                            <a href="{% url 'users:EditPublisher_view' %}">
+                                Edit Publisher
+                            </a>
+                        </div>
+                    </li>
+
+                    {#                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>#}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endif %}
 </aside>
 
 <!-- Main -->

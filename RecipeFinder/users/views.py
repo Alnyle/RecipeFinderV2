@@ -1,9 +1,11 @@
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 
 from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark, RecipeForm, Level
@@ -79,20 +81,26 @@ def logout_view(request):
 
 
 def profile(request):
-    Categories = Category.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+
     if not request.user.is_authenticated:
         return redirect(reverse('users:login_view'))
     return render(request, "users/profile.html", {
-        'Categories': Categories,
+        'Categories': categories_with_recipes,
+        'user': request.user,
     })
 
 
 def addRecipePage(request):
-    categories = Category.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
     publishers = Publisher.objects.all()
     levels = Level.objects.all()
     return render(request, "users/addRecipe.html", {
-        'Categories': categories,
+        'Categories': categories_with_recipes,
         'Publishers': publishers,
         'levels': levels,
     })
@@ -103,7 +111,9 @@ def editRecipePage(request):
     RecipeIngredients = RecipeIngredient.objects.all()
     bookmarks = None
     categories = None
-    Categories = Category.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
 
     # if user authenticated and have saved recipe get them
     if request.user.is_authenticated:
@@ -114,7 +124,7 @@ def editRecipePage(request):
         'recipes': recipes,
         'RecipeIngredients': RecipeIngredients,
         'bookmarks': bookmarks,
-        'Categories': Categories,
+        'Categories': categories_with_recipes,
     })
 
 
@@ -196,13 +206,22 @@ def addLevel_view(request):
         level = Level.objects.create(name=level_name)
         return HttpResponse(status=200)
     else:
-        return render(request, "users/AddLevelForm.html")
+        categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+        # Filter categories to include only those with associated recipes
+        categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+        return render(request, "users/AddLevelForm.html", {
+            'Categories': categories_with_recipes,
+        })
 
 
 def EditLevel_view(request):
     levels = Level.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
     return render(request, 'users/EditLevel.html', {
-        'levels': levels
+        'levels': levels,
+        'Categories': categories_with_recipes,
     })
 
 
@@ -231,7 +250,12 @@ def AddCategory_view(request):
         category = Category.objects.create(name=category_name)
         return HttpResponse(status=204)
     else:
-        return render(request, "users/AddCategoryForm.html")
+        categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+        # Filter categories to include only those with associated recipes
+        categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+        return render(request, "users/AddCategoryForm.html", {
+            "Categories": categories_with_recipes,
+        })
 
 
 # def EditCategory_view(request):
@@ -254,8 +278,12 @@ def EditLevelForm_view(request):
     else:
         level_name = request.GET.get('origin_name')
         level = Level.objects.get(name=level_name)
+        categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+        # Filter categories to include only those with associated recipes
+        categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
         return render(request, 'users/EditLevelForm.html', {
-            'level': level
+            'level': level,
+            'Categories': categories_with_recipes,
         })
 
 
@@ -310,13 +338,22 @@ def addPublisher_view(request):
         )
         return HttpResponse(status=204)
     else:
-        return render(request, "users/AddPublisherForm.html")
+        categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+        # Filter categories to include only those with associated recipes
+        categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+        return render(request, "users/AddPublisherForm.html", {
+           "Categories": categories_with_recipes,
+        })
 
 
 def EditPublisher_view(request):
     Publishers = Publisher.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
     return render(request, 'users/EditPublisher.html', {
         'Publishers': Publishers,
+        "Categories": categories_with_recipes,
     })
 
 
@@ -353,6 +390,53 @@ def EditPublisherDetails_view(request, pub_id):
         return redirect('users:EditPublisher_view')
 
     else:
+        categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+        # Filter categories to include only those with associated recipes
+        categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
         return render(request, 'users/EditPublisherForm.html', {
             'publisher': publisher,
+            "Categories": categories_with_recipes,
         })
+
+
+def EditPersonalInfo_view(request, user_id):
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+    if request.user.is_authenticated:
+        user = get_object_or_404(User, id=user_id)
+        return render(request, "users/EditPersonalInfo.html", {
+            "user": user,
+            "Categories": categories_with_recipes,
+        })
+
+
+def saveUpdatePersonalInfo_view(request):
+    user = get_object_or_404(User, id=request.user.id)
+    if request.method == 'POST':
+        form = request.POST
+        firstName = form.get('firstName')
+        lastName = form.get('lastName')
+        email = form.get('email')
+
+        if firstName and lastName and email:
+            user.first_name = firstName
+            user.last_name = lastName
+            user.email = email
+            user.save()
+        return HttpResponseRedirect(reverse('users:profile'))
+
+
+def updatePassword_view(request):
+
+    # user = get_object_or_404(User, id=request.user.id)
+    if request.user.is_authenticated and request.method == 'POST':
+        user = get_object_or_404(User, id=request.user.id)
+        user.set_password(request.POST.get('password'))
+        user.save()
+        return HttpResponseRedirect(reverse('users:profile'))
+    else:
+        return render(request, 'users/UpdatePassword.html', {
+            "user": request.user,
+        })
+

@@ -23,7 +23,9 @@ def index(request):
     bookmarks = None
     categories = None
     family_recipes = None
-    Categories = Category.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
 
     last_recipes = Recipe.objects.all().order_by('-date')
     family_category = Category.objects.get(name='Family')
@@ -38,7 +40,7 @@ def index(request):
         'recipes': recipes,
         'RecipeIngredients': RecipeIngredients,
         'bookmarks': bookmarks,
-        'Categories': Categories,
+        'Categories': categories_with_recipes,
         'last_recipes': last_recipes,
         'family_recipes': family_recipes,
         'family_category': family_category,
@@ -70,13 +72,16 @@ def favorite(request):
         user = request.user
         bookmarks = Bookmark.objects.filter(user=user).select_related("recipe")
 
-        Categories = Category.objects.all()
+        categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+        # Filter categories to include only those with associated recipes
+        categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+
 
         return render(request, 'recipes/favorite.html', {
             'recipes': recipes,
             'RecipeIngredients': RecipeIngredients,
             'bookmarks': bookmarks,
-            'Categories': Categories,
+            'Categories': categories_with_recipes,
 
         })
     else:
@@ -89,6 +94,10 @@ def recipe_details(request, recipe_id):
     ingredients = RecipeIngredient.objects.filter(recipe=recipe)
     steps = recipe.steps.split('\n')
 
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
+
     bookmarks = None
     if request.user.is_authenticated:
         user = request.user
@@ -98,6 +107,7 @@ def recipe_details(request, recipe_id):
         'recipe': recipe,
         'ingredients': ingredients,
         'steps': steps,
+        'Categories': categories_with_recipes,
     })
 
 
@@ -130,9 +140,11 @@ def get_category(request, category_id):
 
 def AboutUs(request):
     bookmarks = None
-    Categories = Category.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
     return render(request, 'recipes/aboutUs.html', {
-        'Categories': Categories,
+        'Categories': categories_with_recipes,
     })
 
 
@@ -209,7 +221,9 @@ def searchRecipe(request):
             recipes = Recipe.objects.none()
         print(query)
         RecipeIngredients = RecipeIngredient.objects.all()
-        Categories = Category.objects.all()
+        categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+        # Filter categories to include only those with associated recipes
+        categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
 
         # if user authenticated and have saved recipe get them
         if request.user.is_authenticated:
@@ -220,7 +234,7 @@ def searchRecipe(request):
         'recipes': recipes,
         'RecipeIngredients': RecipeIngredients,
         'bookmarks': bookmarks,
-        'Categories': Categories,
+        'Categories': categories_with_recipes,
     })
 
 
@@ -231,7 +245,9 @@ def allRecipe(request):
     bookmarks = None
     categories = None
     family_recipes = None
-    Categories = Category.objects.all()
+    categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    # Filter categories to include only those with associated recipes
+    categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
 
     last_recipes = Recipe.objects.all().order_by('-date')
     family_category = Category.objects.get(name='Family')
@@ -246,5 +262,5 @@ def allRecipe(request):
         'recipes': recipes,
         'RecipeIngredients': RecipeIngredients,
         'bookmarks': bookmarks,
-        'Categories': Categories,
+        'Categories': categories_with_recipes,
     })
