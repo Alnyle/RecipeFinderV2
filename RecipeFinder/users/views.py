@@ -8,7 +8,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.models import User
 
-from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark, RecipeForm, Level
+from recipes.models import Category, Publisher, Level, Recipe, RecipeIngredient, Bookmark, RecipeForm, Level, Ingredient
 from .models import Foodie
 
 from recipes import views
@@ -179,7 +179,28 @@ def editRecipeDetails(request, recipe_id):
         recipe.recipes = category_id,
         recipe.steps = steps
 
-        recipe.updateRecipe()
+        recipe.save()
+
+        updated_ingredients = RecipeIngredient.objects.filter(recipe=recipe)
+
+
+        for ingredient_name, quantity, description in zip(form.getlist('ingredient_name'),
+                                                          form.getlist('ingredient_quantity'),
+                                                          form.getlist('ingredient_description')):
+            if ingredient_name:
+                ingredient_obj, _ = Ingredient.objects.get_or_create(name=ingredient_name)
+
+                recipe_ingredient = RecipeIngredient.objects.filter(recipe=recipe, ingredient=ingredient_obj).first()
+
+                if recipe_ingredient:
+                    recipe_ingredient.quantity = quantity if quantity else 0  # Ensure quantity is not None
+                    recipe_ingredient.description = description
+                    recipe_ingredient.save()
+                else:
+                    RecipeIngredient.objects.create(recipe=recipe, ingredient=ingredient_obj, quantity=quantity if quantity else 0, description=description)
+
+        removed_ingredients = updated_ingredients.exclude(ingredient__name__in=form.getlist('ingredient_name'))
+        removed_ingredients.delete()
 
         return redirect('users:editRecipePage')
 
@@ -342,7 +363,7 @@ def addPublisher_view(request):
         # Filter categories to include only those with associated recipes
         categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
         return render(request, "users/AddPublisherForm.html", {
-           "Categories": categories_with_recipes,
+            "Categories": categories_with_recipes,
         })
 
 
@@ -428,7 +449,6 @@ def saveUpdatePersonalInfo_view(request):
 
 
 def updatePassword_view(request):
-
     # user = get_object_or_404(User, id=request.user.id)
     if request.user.is_authenticated and request.method == 'POST':
         user = get_object_or_404(User, id=request.user.id)
@@ -439,4 +459,3 @@ def updatePassword_view(request):
         return render(request, 'users/UpdatePassword.html', {
             "user": request.user,
         })
-

@@ -217,7 +217,6 @@
                         </div>
                     </li>
 
-                    {#                    <li><a href="{% url 'users:logout_view' %}">Logout</a></li>#}
                 </ul>
             </nav>
         </div>
@@ -259,6 +258,12 @@
         <p>*************</p>
         
         <a href="{% url 'users:updatePassword_view' %}">Change Password</a>
+    </div>
+</div>
+
+<div class="LogoutButton">
+    <div class="logoutWrapper">
+        <a href="{% url 'users:logout_view' %}" class="logoutBtn">Logout</a>
     </div>
 </div>
 

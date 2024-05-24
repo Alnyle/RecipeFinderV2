@@ -5,30 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21b314b6-94e9-4e3f-a16b-3bee92e9d947" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/recipes/static/users/js/EditPersonalInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipes/static/users/js/UpdatePassword.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipes/static/users/style/UpdatePassword.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/EditPersonalInfo.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/UpdatePassword.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/static/users/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/users/js/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/Assets/p3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/Assets/p23.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/RecipeDetails.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/RecipeDetails.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/recipes/style/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipes/static/users/style/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/static/users/style/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/aboutUs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/aboutUs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recipes/recipeDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recipes/recipeDetails.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/AddCategoryForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddCategoryForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/AddLevelForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddLevelForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/AddPublisherForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/AddPublisherForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/EditCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditCategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/EditCategoryForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditCategoryForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/EditLevel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditLevel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/EditLevelForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditLevelForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/EditPublisher.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditPublisher.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/EditPublisherForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditPublisherForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/EditRecipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/EditRecipe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/addRecipe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/addRecipe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/editRecipeDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/editRecipeDetails.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +168,11 @@
       <workItem from="1715600796808" duration="33824000" />
       <workItem from="1716131653919" duration="21943000" />
       <workItem from="1716372922449" duration="20031000" />
-      <workItem from="1716403079943" duration="3909000" />
+      <workItem from="1716403079943" duration="6533000" />
+      <workItem from="1716412243104" duration="4342000" />
+      <workItem from="1716494997748" duration="5417000" />
+      <workItem from="1716558117956" duration="8297000" />
+      <workItem from="1716568351436" duration="5011000" />
     </task>
     <servers />
   </component>

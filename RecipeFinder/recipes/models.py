@@ -50,6 +50,9 @@ class Ingredient(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
 
+    def update(self):
+        self.save()
+
 
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
@@ -86,6 +89,8 @@ class RecipeIngredient(models.Model):
     def __str__(self):
         return f"RecipeIngredient Technique: {self.quantity}, {self.description}"
 
+    def update(self):
+        self.save()
 
 class Bookmark(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
