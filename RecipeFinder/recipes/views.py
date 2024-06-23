@@ -200,7 +200,7 @@ def addRecipe(request):
 
         # Ingredients = form.get('ingredients')
         # Ingredients functionality does work yet
-        return redirect('index')
+        return redirect('users:editRecipePage')
         # return HttpResponse(status=204)
 
     return HttpResponse(status=302)  # find better status code

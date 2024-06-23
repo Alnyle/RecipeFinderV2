@@ -95,12 +95,14 @@ def profile(request):
 
 def addRecipePage(request):
     categories_with_recipes = Category.objects.annotate(num_recipes=Count('recipes'))
+    allCategories = Category.objects.all()
     # Filter categories to include only those with associated recipes
     categories_with_recipes = categories_with_recipes.filter(num_recipes__gt=0)
     publishers = Publisher.objects.all()
     levels = Level.objects.all()
     return render(request, "users/addRecipe.html", {
         'Categories': categories_with_recipes,
+        'allCategories': allCategories,
         'Publishers': publishers,
         'levels': levels,
     })

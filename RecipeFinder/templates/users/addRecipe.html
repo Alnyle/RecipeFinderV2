@@ -245,7 +245,7 @@
                         <div class="col-1">
                           <label for="course_name">Course Name</label>
                           <select name="course_name" id="course_name">
-                              {% for category in Categories %}
+                              {% for category in allCategories %}
                                   <option value="{{ category.id }}">{{ category.name }}</option>
                               {% endfor %}
                           
